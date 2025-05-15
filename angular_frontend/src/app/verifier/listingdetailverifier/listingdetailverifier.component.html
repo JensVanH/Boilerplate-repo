@@ -9,6 +9,7 @@
       <div class="col">
         <h1>
           {{ listing.name }}
+        <p> </p>
         <p style="font-size: 0.6em; margin-top: -10px;">
             <span *ngIf="listing.status === 'cancelled'" style="color: darkred;">(CANCELLED)</span>
             <span *ngIf="listing.availableAssets === 0" style="color: grey;">(SOLD OUT)</span>
@@ -79,7 +80,7 @@
 
         <!-- Categories -->
         <p *ngFor="let c of listing.groupedCategories">
-          <b>{{c[0]}}:</b> {{c[1].join(", ")}}
+          <b>Category: </b> {{c[1].join(", ")}}
         </p>
 
         <!-- Description -->

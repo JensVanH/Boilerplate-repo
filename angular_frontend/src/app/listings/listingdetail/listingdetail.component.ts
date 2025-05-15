@@ -269,10 +269,14 @@ export class ListingDetailComponent implements OnInit {
 
   // create transaction
   createTransaction(){
-    // get form value
-    let values = {...this.form.getRawValue()}
-    values['numberOfAssets'] = this.getTotalServiceAssets()
-    // add listingID to form values
+    let values = { ...this.form.getRawValue() };
+
+    // Determine correct asset count
+    if (this.ps.properties['Listing Kind']?.includes('Service') && this.ps.properties['Frequency']?.includes('Recurring')) {
+      values['numberOfAssets'] = this.getTotalServiceAssets();
+    } else {
+      values['numberOfAssets'] = parseInt(this.form.get('numberOfAssets')?.value, 10) || 1;
+    }
     values['listingID'] = this.listing['listingID'];
     this.db.createTransaction(this.user.getLoginToken(), values).then(r => {
 
