@@ -145,9 +145,12 @@
           log out
         </a>
       </li>
+      
+      <!-- Show only if user is a regular user -->
+      <button *ngIf="user.getRole() === 'user'" class="btn btn-success" [routerLink]="['/listings', 'createEditListing']">
+        + Create Listing
+      </button>
 
-      <!-- Link to create listing page -->
-      <button class="btn btn-success" [routerLink]="['/listings', 'createEditListing']">+ Create Listing</button>
 
     </ul>
   </div>
