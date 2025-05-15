@@ -1,0 +1,87 @@
+
+
+$btn-types: info, success, warning, danger;
+$detail-window-type-colors: (
+  info: #17a2b8,
+  reviews: #28a745,
+  transactions: #ffc107
+);
+
+$status-colors: (
+  reserved: warning,
+  payed: success,
+  cancelled: danger
+);
+
+@each $status, $color in $status-colors {
+  .text-#{$status} {
+    @extend .text-#{$color} !optional;
+  }
+  .bg-#{$status} {
+    @extend .bg-#{$color} !optional;
+    --bs-bg-opacity: 0.3;
+  }
+}
+
+.detail-tab-radio-button {
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  border-bottom-style: hidden;
+  box-shadow:none !important;
+  outline:0px !important;
+}
+
+@each $btn-type in $btn-types {
+  .detail-tab-radio-button--#{$btn-type}-selected {
+    @extend .detail-tab-radio-button;
+    @extend .btn-#{$btn-type} !optional;
+  }
+  .detail-tab-radio-button--#{$btn-type} {
+    @extend .detail-tab-radio-button;
+    @extend .btn-outline-#{$btn-type} !optional;
+  }
+}
+
+@each $type, $color in $detail-window-type-colors {
+  .detail-window--#{$type} {
+      border-style: solid;
+      border-radius: 12px;
+      border-width: 1px;
+      padding: 10px;
+      border-color: $color;
+  }
+}
+
+.rating-star-back {
+  position: relative;
+  display: inline-block;
+  font-size: 20px;
+  color: gray;
+}
+
+.rating-star-back-filled {
+  @extend .rating-star-back;
+  color: #FAB81E;
+}
+
+.rating-star-front {
+  position: absolute;
+  display: inline-block;
+  overflow: hidden;
+  color: #FAB81E;
+}
+
+.col-8 {
+  flex: 0 0 auto;
+  width: 66.66666667% !important;
+}
+
+:host ::ng-deep .calendar-date-occupied {
+  background: red;
+  border-radius: 100%;
+}
+
+:host ::ng-deep .calendar-date-partially-occupied {
+  background: orange;
+  border-radius: 100%;
+}

@@ -1,0 +1,1269 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>marketplace documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">marketplace documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li
+  >
+  TransactionsComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/transactions/transactions.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-transactions</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./transactions.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./transactions.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#form" >form</a>
+                            </li>
+                            <li>
+                                <a href="#hasCancelled" >hasCancelled</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#image" >image</a>
+                            </li>
+                            <li>
+                                <a href="#rating" >rating</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#router" >router</a>
+                            </li>
+                            <li>
+                                <a href="#selectedTransactionForReview" >selectedTransactionForReview</a>
+                            </li>
+                            <li>
+                                <a href="#transactions" >transactions</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#cancelTransaction" >cancelTransaction</a>
+                            </li>
+                            <li>
+                                <a href="#contactOwner" >contactOwner</a>
+                            </li>
+                            <li>
+                                <a href="#fetchTransactions" >fetchTransactions</a>
+                            </li>
+                            <li>
+                                <a href="#logBookings" >logBookings</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#postReview" >postReview</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(db: <a href="../injectables/DbConnectionService.html" target="_self">DbConnectionService</a>, user: <a href="../injectables/UserService.html" target="_self">UserService</a>, route: <a href="https://angular.io/api/router/ActivatedRoute" target="_blank">ActivatedRoute</a>, image: <a href="../injectables/ImageService.html" target="_self">ImageService</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, ps: <a href="../injectables/PropertiesService.html" target="_self">PropertiesService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/transactions/transactions.component.ts:20</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>db</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/DbConnectionService.html" target="_self" >DbConnectionService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>user</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/UserService.html" target="_self" >UserService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>route</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/router/ActivatedRoute" target="_blank" >ActivatedRoute</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>image</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/ImageService.html" target="_self" >ImageService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>ps</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/PropertiesService.html" target="_self" >PropertiesService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cancelTransaction"></a>
+                    <span class="name">
+                        <span ><b>cancelTransaction</b></span>
+                        <a href="#cancelTransaction"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>cancelTransaction(transactionID: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="60"
+                            class="link-to-prism">src/app/transactions/transactions.component.ts:60</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>transactionID</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="contactOwner"></a>
+                    <span class="name">
+                        <span ><b>contactOwner</b></span>
+                        <a href="#contactOwner"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>contactOwner(transaction)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="74"
+                            class="link-to-prism">src/app/transactions/transactions.component.ts:74</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>transaction</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="fetchTransactions"></a>
+                    <span class="name">
+                        <span ><b>fetchTransactions</b></span>
+                        <a href="#fetchTransactions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>fetchTransactions()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="38"
+                            class="link-to-prism">src/app/transactions/transactions.component.ts:38</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="logBookings"></a>
+                    <span class="name">
+                        <span ><b>logBookings</b></span>
+                        <a href="#logBookings"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>logBookings(bookings)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="55"
+                            class="link-to-prism">src/app/transactions/transactions.component.ts:55</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>bookings</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="34"
+                            class="link-to-prism">src/app/transactions/transactions.component.ts:34</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="postReview"></a>
+                    <span class="name">
+                        <span ><b>postReview</b></span>
+                        <a href="#postReview"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>postReview()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="65"
+                            class="link-to-prism">src/app/transactions/transactions.component.ts:65</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="form"></a>
+                    <span class="name">
+                        <span ><b>form</b></span>
+                        <a href="#form"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>UntypedFormGroup</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/transactions/transactions.component.ts:17</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="hasCancelled"></a>
+                    <span class="name">
+                        <span ><b>hasCancelled</b></span>
+                        <a href="#hasCancelled"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/transactions/transactions.component.ts:16</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="image"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>image</b></span>
+                        <a href="#image"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../injectables/ImageService.html" target="_self" >ImageService</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/transactions/transactions.component.ts:26</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="rating"></a>
+                    <span class="name">
+                        <span ><b>rating</b></span>
+                        <a href="#rating"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>0</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/transactions/transactions.component.ts:19</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="router"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>router</b></span>
+                        <a href="#router"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/transactions/transactions.component.ts:27</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedTransactionForReview"></a>
+                    <span class="name">
+                        <span ><b>selectedTransactionForReview</b></span>
+                        <a href="#selectedTransactionForReview"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>-1</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/transactions/transactions.component.ts:20</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="transactions"></a>
+                    <span class="name">
+                        <span ><b>transactions</b></span>
+                        <a href="#transactions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/transactions/transactions.component.ts:18</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
+import { UntypedFormControl, UntypedFormGroup } from &#x27;@angular/forms&#x27;;
+import { ActivatedRoute, Router } from &#x27;@angular/router&#x27;;
+import { DbConnectionService } from &#x27;../services/db-connection.service&#x27;;
+import { ImageService } from &#x27;../services/image.service&#x27;;
+import { UserService } from &#x27;../services/user.service&#x27;;
+import { PropertiesService } from &#x27;../services/properties.service&#x27;;
+
+@Component({
+  selector: &#x27;app-transactions&#x27;,
+  templateUrl: &#x27;./transactions.component.html&#x27;,
+  styleUrls: [&#x27;./transactions.component.scss&#x27;]
+})
+export class TransactionsComponent implements OnInit {
+
+  hasCancelled: boolean &#x3D; false;
+  form: UntypedFormGroup;
+  transactions &#x3D; [];
+  rating: number &#x3D; 0; // selected rating for review
+  selectedTransactionForReview: number &#x3D; -1;
+
+  constructor(
+    private db: DbConnectionService,
+    private user: UserService,
+    private route: ActivatedRoute,
+    public image: ImageService,
+    public router: Router,
+    private ps: PropertiesService) {
+    this.form &#x3D; new UntypedFormGroup({
+      comment: new UntypedFormControl(&#x27;&#x27;)
+    });
+  }
+
+  ngOnInit(): void {
+    this.fetchTransactions();
+  }
+
+  fetchTransactions() {
+    this.db.getUserTransactions(this.user.getLoginToken())
+      .then(t &#x3D;&gt; {
+        // sort by creation time
+        this.transactions &#x3D; t[&#x27;transactions&#x27;].sort((a, b) &#x3D;&gt; new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+
+        // load bookings when applicable
+        if (this.ps.properties[&#x27;Listing Kind&#x27;]?.includes(&#x27;Service&#x27;) &amp;&amp; this.ps.properties[&#x27;Frequency&#x27;]?.includes(&#x27;Recurring&#x27;)){
+          this.transactions.forEach(transaction &#x3D;&gt; {
+              this.db.getTransactionBookings(this.user.getLoginToken(), transaction[&#x27;transactionID&#x27;]).then(r &#x3D;&gt; {
+                transaction[&#x27;bookings&#x27;] &#x3D; r[&#x27;bookings&#x27;]
+              })
+          })
+        }
+      })
+  }
+
+  logBookings(bookings){
+    return bookings.map(x &#x3D;&gt; &#x60;(${x.startDate}) ${x.startTime} - ${x.endTime} (${x.endDate})&#x60;)
+  }
+
+  // cancel transaction
+  cancelTransaction(transactionID: number) {
+    this.db.cancelTransaction(transactionID, this.user.getLoginToken())
+      .then(_ &#x3D;&gt; this.fetchTransactions()) // update transactionInfo
+  }
+
+  postReview() {
+    let v &#x3D; this.form.getRawValue();
+    v[&#x27;score&#x27;] &#x3D; this.rating;
+    this.db.postReview(this.user.getLoginToken(), this.selectedTransactionForReview, v).then(r &#x3D;&gt; {
+      this.router.navigateByUrl(&#x27;/listings/details/&#x27; + r[&#x27;listingID&#x27;]);
+    })
+  }
+
+  // open message page to owner of listing
+  contactOwner(transaction){
+    this.router.navigateByUrl(&#x60;/messages?id&#x3D;${transaction.Listing[&#x27;userID&#x27;]}&#x60;)
+  }
+
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div style&#x3D;&quot;margin: 10px;&quot;&gt;
+  &lt;div class&#x3D;&quot;row&quot;&gt;
+    &lt;!-- Right Col (All main info)--&gt;
+    &lt;!-- &lt;div class&#x3D;&quot;col&quot;&gt; --&gt;
+    &lt;div class&#x3D;&quot;container&quot;&gt;
+
+      &lt;!-- Row containing search bar and order preference --&gt;
+      &lt;!-- &lt;div class&#x3D;&quot;row&quot;&gt; --&gt;
+      &lt;!-- Row containing amount of results and page nagivation --&gt;
+      &lt;!-- &lt;div class&#x3D;&quot;row&quot;&gt; --&gt;
+
+      &lt;!-- Show cancelled listings checkbox --&gt;
+      &lt;!-- &lt;div class&#x3D;&quot;col-auto&quot; *ngIf&#x3D;&quot;hasCancelled&quot;&gt;
+              &lt;div class&#x3D;&quot;card&quot;&gt;
+                &lt;div class&#x3D;&quot;card-body&quot; style&#x3D;&quot;padding:10px&quot;&gt;
+                  &lt;div class&#x3D;&quot;form-check&quot;&gt;
+                    &lt;input class&#x3D;&quot;form-check-input&quot; type&#x3D;&quot;checkbox&quot; value&#x3D;&quot;&quot; id&#x3D;&quot;checkActive&quot;
+                      [(ngModel)]&#x3D;&quot;activeListings&quot;&gt;
+                    &lt;label class&#x3D;&quot;form-check-label&quot; for&#x3D;&quot;checkActive&quot;&gt;
+                      Only show active transactions
+                    &lt;/label&gt;
+                  &lt;/div&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt; --&gt;
+      &lt;!-- Row containing transactions --&gt;
+      &lt;div class&#x3D;&quot;row&quot;&gt;
+        &lt;div class&#x3D;&quot;col&quot;&gt;
+          &lt;!-- Listings --&gt;
+          &lt;div class&#x3D;&quot;card&quot; *ngFor&#x3D;&quot;let t of transactions&quot; style&#x3D;&quot;margin-bottom: 5px;&quot;&gt;
+
+            &lt;!-- Listing --&gt;
+            &lt;div class&#x3D;&quot;row no-gutters&quot;&gt;
+
+              &lt;!-- Image --&gt;
+              &lt;div *ngIf&#x3D;&quot;!ps.properties[&#x27;Listing Type&#x27;]?.includes(&#x27;Digital Good&#x27;)&quot; class&#x3D;&quot;col-auto&quot;
+                style&#x3D;&quot;cursor:pointer;&quot; [routerLink]&#x3D;&quot;[&#x27;/transactions&#x27;, &#x27;details&#x27;, t.transactionID]&quot;&gt;
+                &lt;img class&#x3D;&quot;card-img-left&quot; [src]&#x3D;&quot;t.Listing.picture ? t.Listing.picture : image.getPlaceholderImage()&quot;
+                  style&#x3D;&quot; max-width: 100%; height: auto; display: block; margin: 0 auto;&quot; [alt]&#x3D;&quot;t.Listing.name&quot;&gt;
+              &lt;/div&gt;
+
+              &lt;!-- Listing info --&gt;
+              &lt;div class&#x3D;&quot;col&quot;&gt;
+                &lt;div class&#x3D;&quot;card-body&quot;&gt;
+                  &lt;div class&#x3D;&quot;row no-gutters&quot;&gt;
+
+                    &lt;!-- Details --&gt;
+                    &lt;div class&#x3D;&quot;col&quot;&gt;
+
+                      &lt;!-- Title --&gt;
+                      &lt;h5 class&#x3D;&quot;card-title&quot;&gt;{{t.Listing.name}}
+                        &lt;b *ngIf&#x3D;&quot;t.status &#x3D;&#x3D;&#x3D;&#x27;cancelled&#x27;&quot; style&#x3D;&quot;color: red;&quot;&gt; (CANCELLED) &lt;/b&gt;
+                      &lt;/h5&gt;
+
+                      &lt;!-- Transaction Details --&gt;
+                      &lt;div&gt;
+                        &lt;div
+                          *ngIf&#x3D;&quot;ps.properties[&#x27;Listing Kind&#x27;]?.includes(&#x27;Service&#x27;) &amp;&amp; ps.properties[&#x27;Frequency&#x27;]?.includes(&#x27;One-Time&#x27;)&quot;&gt;
+                          Date: &lt;b&gt;{{t.Listing.date}}&lt;/b&gt;&lt;/div&gt;
+                        &lt;!-- div *ngIf&#x3D;&quot;properties[&#x27;Listing Kind&#x27;]?.includes(&#x27;Service&#x27;) &amp;&amp; properties[&#x27;Frequency&#x27;]?.includes(&#x27;Recurring&#x27;)&quot;&gt;Date: &lt;b&gt;{{t.date}}&lt;/b&gt;&lt;/div--&gt;
+                        &lt;!--div *ngIf&#x3D;&quot;properties[&#x27;Listing Kind&#x27;]?.includes(&#x27;Service&#x27;) &amp;&amp; properties[&#x27;Frequency&#x27;]?.includes(&#x27;Recurring&#x27;)&quot;&gt;Time: &lt;b&gt;{{t.time.split(&#x27;T&#x27;).join(&#x27; &#x27;).split(&#x27;:&#x27;).slice(0, -1).join(&#x27;:&#x27;)}}&lt;/b&gt;&lt;/div--&gt;
+                        &lt;div *ngIf&#x3D;&quot;!ps.properties[&#x27;Quantity&#x27;]?.includes(&#x27;One&#x27;) &amp;&amp; !ps.properties[&#x27;Frequency&#x27;]?.includes(&#x27;Recurring&#x27;)&quot;&gt;Quantity: &lt;b&gt;{{t.numberOfAssets}}&lt;/b&gt;
+                        &lt;/div&gt;
+                        &lt;div *ngIf&#x3D;&quot;!ps.properties[&#x27;Price Calculation&#x27;]?.includes(&#x27;By Quantity&#x27;)&quot;&gt;Price:
+                          &lt;b&gt;€{{t.price}}&lt;/b&gt;&lt;/div&gt;
+                        &lt;div *ngIf&#x3D;&quot;ps.properties[&#x27;Price Calculation&#x27;]?.includes(&#x27;By Quantity&#x27;)&quot;&gt; Total Price:
+                          &lt;b&gt;€{{t.price * t.numberOfAssets}}&lt;/b&gt;&lt;/div&gt;
+                        &lt;div&gt;Status: &lt;b&gt;{{t.status}}&lt;/b&gt;&lt;/div&gt;
+                        &lt;!-- div *ngIf&#x3D;&quot;ps.properties[&#x27;Listing Type&#x27;]?.includes(&#x27;Digital Service&#x27;)&quot;&gt;&lt;a href&#x3D;&quot;{{t.Listing.link}}&quot;&gt;Meeting Link&lt;/a&gt;&lt;/div --&gt;
+                        &lt;div *ngIf&#x3D;&quot;ps.properties[&#x27;Listing Type&#x27;]?.includes(&#x27;Physical Good&#x27;)&quot;&gt;Address:
+                          &lt;b&gt;{{t.sendAddress}}&lt;/b&gt;&lt;/div&gt;
+                        &lt;div *ngIf&#x3D;&quot;ps.properties[&#x27;Listing Type&#x27;]?.includes(&#x27;Digital Good&#x27;)&quot;&gt;&lt;a style&#x3D;&quot;cursor:pointer;&quot;
+                            [routerLink]&#x3D;&quot;[&#x27;/transactions&#x27;, &#x27;details&#x27;, t.transactionID]&quot;&gt;Event File&lt;/a&gt;&lt;/div&gt;
+                        &lt;div
+                          *ngIf&#x3D;&quot;ps.properties[&#x27;Listing Kind&#x27;]?.includes(&#x27;Service&#x27;) &amp;&amp; ps.properties[&#x27;Frequency&#x27;]?.includes(&#x27;Recurring&#x27;)&quot;&gt;
+                          Bookings:
+                          &lt;table class&#x3D;&quot;table&quot; *ngIf&#x3D;&quot;t.bookings &amp;&amp; t.bookings.length &gt; 0&quot;&gt;
+                            &lt;thead class&#x3D;&quot;thead-light&quot;&gt;
+                              &lt;!-- Table headers --&gt;
+                              &lt;tr&gt;
+                                &lt;th scope&#x3D;&quot;col&quot;&gt;Date&lt;/th&gt;
+                                &lt;th score&#x3D;&quot;col&quot; *ngIf&#x3D;&quot;ps.properties[&#x27;Time Unit&#x27;]?.includes(&#x27;Hour&#x27;)&quot;&gt;Time&lt;/th&gt;
+                                &lt;th score&#x3D;&quot;col&quot;&gt;Info&lt;/th&gt;
+                              &lt;/tr&gt;
+                            &lt;/thead&gt;
+                            &lt;tbody&gt;
+                              &lt;tr *ngFor&#x3D;&quot;let b of t.bookings&quot;&gt;
+                                &lt;!-- Date --&gt;
+                                &lt;td&gt;
+                                  {{ b.startDate &#x3D;&#x3D;&#x3D; b.endDate ? b.startDate : b.startDate + &quot; - &quot; + b.endDate }}
+                                &lt;/td&gt;
+                                &lt;!-- Time --&gt;
+                                &lt;td *ngIf&#x3D;&quot;ps.properties[&#x27;Time Unit&#x27;]?.includes(&#x27;Hour&#x27;)&quot;&gt;
+                                  {{ b.startTime }} - {{ b.endTime }}
+                                &lt;/td&gt;
+                                &lt;!-- Info --&gt;
+                                &lt;td&gt;
+                                  {{ b.info }}
+                                &lt;/td&gt;
+                              &lt;/tr&gt;
+                            &lt;/tbody&gt;
+                          &lt;/table&gt;
+
+                          &lt;!-- No bookings --&gt;
+                          &lt;div *ngIf&#x3D;&quot;!t.bookings || t.bookings.length &#x3D;&#x3D;&#x3D; 0&quot;&gt;
+                            &lt;b&gt;No Bookings On this transaction&lt;/b&gt;
+                          &lt;/div&gt;
+                        &lt;/div&gt;
+                      &lt;/div&gt;
+
+                     &lt;/div&gt;
+
+                    &lt;!-- Actions --&gt;
+
+                  &lt;/div&gt;
+                  &lt;div *ngIf&#x3D;&quot;t.status !&#x3D;&#x3D; &#x27;cancelled&#x27;&quot;&gt;
+                    &lt;div class&#x3D;&quot;btn-group&quot; role&#x3D;&quot;group&quot;&gt;
+
+                       &lt;!-- Contact (only when user is not owner of listing) --&gt;
+                       &lt;button
+                       *ngIf&#x3D;&quot;user.isLoggedIn() &amp;&amp; ps.properties[&#x27;Conversation System&#x27;]?.includes(&#x27;Transaction Conversation&#x27;)&quot;
+                       class&#x3D;&quot;btn-primary&quot; (click)&#x3D;&quot;contactOwner(t)&quot;&gt;
+                       Message Seller
+                     &lt;/button&gt;
+
+                      &lt;!-- Cancel Transaction--&gt;
+                      &lt;button class&#x3D;&quot;btn btn-danger&quot; (click)&#x3D;&quot;cancelTransaction(t.transactionID)&quot;&gt;
+                        CANCEL
+                      &lt;/button&gt;
+
+                      &lt;!-- Review listing --&gt;
+                      &lt;button
+                        *ngIf&#x3D;&quot;selectedTransactionForReview !&#x3D;&#x3D; t.transactionID &amp;&amp; t.reviewable &amp;&amp; ps.properties[&#x27;Review By&#x27;]?.includes(&#x27;By Customer&#x27;)&quot;
+                        class&#x3D;&quot;btn btn-success&quot;
+                        (click)&#x3D;&quot;selectedTransactionForReview &#x3D; t.transactionID;form.reset();rating&#x3D;0;hoverRating&#x3D;0&quot;&gt;
+                        Review
+                      &lt;/button&gt;
+                    &lt;/div&gt;
+                  &lt;/div&gt;
+                &lt;/div&gt;
+
+              &lt;/div&gt;
+            &lt;/div&gt;
+
+            &lt;!-- Review form (only for transactions) --&gt;
+            &lt;div *ngIf&#x3D;&quot;selectedTransactionForReview &#x3D;&#x3D;&#x3D; t.transactionID&quot; style&#x3D;&quot;margin:10px&quot;&gt;
+              &lt;form [formGroup]&#x3D;&quot;form&quot; (ngSubmit)&#x3D;&quot;postReview()&quot;&gt;
+
+                &lt;!-- Title + Rating --&gt;
+                &lt;h4&gt;
+                  Review:
+                  &lt;!-- Rating --&gt;
+                  &lt;ngb-rating max&#x3D;5 [(rate)]&#x3D;&quot;rating&quot; (hover)&#x3D;&quot;hoverRating &#x3D; $event&quot; (leave)&#x3D;&quot;hoverRating &#x3D; 0&quot;&gt;
+                    &lt;ng-template let-fill&#x3D;&quot;fill&quot; let-index&#x3D;&quot;index&quot;&gt;
+                      &lt;span
+                        [style]&#x3D;&quot;&#x27;font-size: 50px;color: &#x27; + (index &lt; hoverRating &amp;&amp; index &gt;&#x3D; rating ? &#x27;#FAB81E&#x27;: index &lt; hoverRating ? &#x27;orange&#x27; : index &gt;&#x3D; rating ? &#x27;gray&#x27; : &#x27;#FFC300&#x27;)&quot;&gt;
+                        &amp;#9733;
+                      &lt;/span&gt;
+                    &lt;/ng-template&gt;
+                  &lt;/ngb-rating&gt;
+                &lt;/h4&gt;
+
+                &lt;!-- Comment --&gt;
+                &lt;div class&#x3D;&quot;form-group&quot;&gt;
+                  &lt;label for&#x3D;&quot;textareaComment&quot;&gt;
+                    Comment (optional)
+                  &lt;/label&gt;
+                  &lt;textarea class&#x3D;&quot;form-control&quot; id&#x3D;&quot;textareaComment&quot; placeholder&#x3D;&quot;Enter comment&quot; rows&#x3D;&quot;3&quot;
+                    formControlName&#x3D;&quot;comment&quot;&gt;
+                      &lt;/textarea&gt;
+                &lt;/div&gt;
+
+                &lt;!-- Actions --&gt;
+                &lt;div class&#x3D;&quot;btn-group&quot; role&#x3D;&quot;group&quot;&gt;
+
+                  &lt;!-- Cancel reviewing --&gt;
+                  &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-danger&quot; (click)&#x3D;&quot;selectedTransactionForReview &#x3D; -1&quot;&gt;
+                    Cancel Review
+                  &lt;/button&gt;
+
+                  &lt;!-- Post review --&gt;
+                  &lt;button class&#x3D;&quot;btn btn-success&quot; [disabled]&#x3D;&quot;rating &#x3D;&#x3D;&#x3D; 0&quot;&gt;
+                    Post Review
+                  &lt;/button&gt;
+
+                &lt;/div&gt;
+
+              &lt;/form&gt;
+            &lt;/div&gt;
+            &lt;!-- &lt;/div&gt; --&gt;
+          &lt;/div&gt;
+
+          &lt;!-- No results --&gt;
+          &lt;div *ngIf&#x3D;&quot;transactions!&#x3D;&#x3D; undefined &amp;&amp; transactions.length &#x3D;&#x3D;&#x3D; 0&quot;&gt;
+            &lt;b&gt;No Transactions Found&lt;/b&gt;
+          &lt;/div&gt;
+          &lt;!-- &lt;/div&gt;
+          &lt;/div&gt; --&gt;
+        &lt;/div&gt;
+
+      &lt;/div&gt;
+    &lt;/div&gt;</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./transactions.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">.rating-star-back {
+  position: relative;
+  display: inline-block;
+  font-size: 20px;
+  color: gray;
+}
+
+.rating-star-back-filled {
+  @extend .rating-star-back;
+  color: #FAB81E;
+}
+
+.rating-star-front {
+  position: absolute;
+  display: inline-block;
+  overflow: hidden;
+  color: #FAB81E;
+}
+
+.detail-tab-radio-button {
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  border-bottom-style: hidden;
+  box-shadow:none !important;
+  outline:0px !important;
+}</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div style="margin: 10px;">  <div class="row">    <!-- Right Col (All main info)-->    <!-- <div class="col"> -->    <div class="container">      <!-- Row containing search bar and order preference -->      <!-- <div class="row"> -->      <!-- Row containing amount of results and page nagivation -->      <!-- <div class="row"> -->      <!-- Show cancelled listings checkbox -->      <!-- <div class="col-auto" *ngIf="hasCancelled">              <div class="card">                <div class="card-body" style="padding:10px">                  <div class="form-check">                    <input class="form-check-input" type="checkbox" value="" id="checkActive"                      [(ngModel)]="activeListings">                    <label class="form-check-label" for="checkActive">                      Only show active transactions                    </label>                  </div>                </div>              </div>            </div> -->      <!-- Row containing transactions -->      <div class="row">        <div class="col">          <!-- Listings -->          <div class="card" *ngFor="let t of transactions" style="margin-bottom: 5px;">            <!-- Listing -->            <div class="row no-gutters">              <!-- Image -->              <div *ngIf="!ps.properties[\'Listing Type\']?.includes(\'Digital Good\')" class="col-auto"                style="cursor:pointer;" [routerLink]="[\'/transactions\', \'details\', t.transactionID]">                <img class="card-img-left" [src]="t.Listing.picture ? t.Listing.picture : image.getPlaceholderImage()"                  style=" max-width: 100%; height: auto; display: block; margin: 0 auto;" [alt]="t.Listing.name">              </div>              <!-- Listing info -->              <div class="col">                <div class="card-body">                  <div class="row no-gutters">                    <!-- Details -->                    <div class="col">                      <!-- Title -->                      <h5 class="card-title">{{t.Listing.name}}                        <b *ngIf="t.status ===\'cancelled\'" style="color: red;"> (CANCELLED) </b>                      </h5>                      <!-- Transaction Details -->                      <div>                        <div                          *ngIf="ps.properties[\'Listing Kind\']?.includes(\'Service\') && ps.properties[\'Frequency\']?.includes(\'One-Time\')">                          Date: <b>{{t.Listing.date}}</b></div>                        <!-- div *ngIf="properties[\'Listing Kind\']?.includes(\'Service\') && properties[\'Frequency\']?.includes(\'Recurring\')">Date: <b>{{t.date}}</b></div-->                        <!--div *ngIf="properties[\'Listing Kind\']?.includes(\'Service\') && properties[\'Frequency\']?.includes(\'Recurring\')">Time: <b>{{t.time.split(\'T\').join(\' \').split(\':\').slice(0, -1).join(\':\')}}</b></div-->                        <div *ngIf="!ps.properties[\'Quantity\']?.includes(\'One\') && !ps.properties[\'Frequency\']?.includes(\'Recurring\')">Quantity: <b>{{t.numberOfAssets}}</b>                        </div>                        <div *ngIf="!ps.properties[\'Price Calculation\']?.includes(\'By Quantity\')">Price:                          <b>€{{t.price}}</b></div>                        <div *ngIf="ps.properties[\'Price Calculation\']?.includes(\'By Quantity\')"> Total Price:                          <b>€{{t.price * t.numberOfAssets}}</b></div>                        <div>Status: <b>{{t.status}}</b></div>                        <!-- div *ngIf="ps.properties[\'Listing Type\']?.includes(\'Digital Service\')"><a href="{{t.Listing.link}}">Meeting Link</a></div -->                        <div *ngIf="ps.properties[\'Listing Type\']?.includes(\'Physical Good\')">Address:                          <b>{{t.sendAddress}}</b></div>                        <div *ngIf="ps.properties[\'Listing Type\']?.includes(\'Digital Good\')"><a style="cursor:pointer;"                            [routerLink]="[\'/transactions\', \'details\', t.transactionID]">Event File</a></div>                        <div                          *ngIf="ps.properties[\'Listing Kind\']?.includes(\'Service\') && ps.properties[\'Frequency\']?.includes(\'Recurring\')">                          Bookings:                          <table class="table" *ngIf="t.bookings && t.bookings.length > 0">                            <thead class="thead-light">                              <!-- Table headers -->                              <tr>                                <th scope="col">Date</th>                                <th score="col" *ngIf="ps.properties[\'Time Unit\']?.includes(\'Hour\')">Time</th>                                <th score="col">Info</th>                              </tr>                            </thead>                            <tbody>                              <tr *ngFor="let b of t.bookings">                                <!-- Date -->                                <td>                                  {{ b.startDate === b.endDate ? b.startDate : b.startDate + " - " + b.endDate }}                                </td>                                <!-- Time -->                                <td *ngIf="ps.properties[\'Time Unit\']?.includes(\'Hour\')">                                  {{ b.startTime }} - {{ b.endTime }}                                </td>                                <!-- Info -->                                <td>                                  {{ b.info }}                                </td>                              </tr>                            </tbody>                          </table>                          <!-- No bookings -->                          <div *ngIf="!t.bookings || t.bookings.length === 0">                            <b>No Bookings On this transaction</b>                          </div>                        </div>                      </div>                     </div>                    <!-- Actions -->                  </div>                  <div *ngIf="t.status !== \'cancelled\'">                    <div class="btn-group" role="group">                       <!-- Contact (only when user is not owner of listing) -->                       <button                       *ngIf="user.isLoggedIn() && ps.properties[\'Conversation System\']?.includes(\'Transaction Conversation\')"                       class="btn-primary" (click)="contactOwner(t)">                       Message Seller                     </button>                      <!-- Cancel Transaction-->                      <button class="btn btn-danger" (click)="cancelTransaction(t.transactionID)">                        CANCEL                      </button>                      <!-- Review listing -->                      <button                        *ngIf="selectedTransactionForReview !== t.transactionID && t.reviewable && ps.properties[\'Review By\']?.includes(\'By Customer\')"                        class="btn btn-success"                        (click)="selectedTransactionForReview = t.transactionID;form.reset();rating=0;hoverRating=0">                        Review                      </button>                    </div>                  </div>                </div>              </div>            </div>            <!-- Review form (only for transactions) -->            <div *ngIf="selectedTransactionForReview === t.transactionID" style="margin:10px">              <form [formGroup]="form" (ngSubmit)="postReview()">                <!-- Title + Rating -->                <h4>                  Review:                  <!-- Rating -->                  <ngb-rating max=5 [(rate)]="rating" (hover)="hoverRating = $event" (leave)="hoverRating = 0">                    <ng-template let-fill="fill" let-index="index">                      <span                        [style]="\'font-size: 50px;color: \' + (index < hoverRating && index >= rating ? \'#FAB81E\': index < hoverRating ? \'orange\' : index >= rating ? \'gray\' : \'#FFC300\')">                        &#9733;                      </span>                    </ng-template>                  </ngb-rating>                </h4>                <!-- Comment -->                <div class="form-group">                  <label for="textareaComment">                    Comment (optional)                  </label>                  <textarea class="form-control" id="textareaComment" placeholder="Enter comment" rows="3"                    formControlName="comment">                      </textarea>                </div>                <!-- Actions -->                <div class="btn-group" role="group">                  <!-- Cancel reviewing -->                  <button type="button" class="btn btn-danger" (click)="selectedTransactionForReview = -1">                    Cancel Review                  </button>                  <!-- Post review -->                  <button class="btn btn-success" [disabled]="rating === 0">                    Post Review                  </button>                </div>              </form>            </div>            <!-- </div> -->          </div>          <!-- No results -->          <div *ngIf="transactions!== undefined && transactions.length === 0">            <b>No Transactions Found</b>          </div>          <!-- </div>          </div> -->        </div>      </div>    </div></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CategoriesComponent', 'selector': 'app-categories'},{'name': 'ChangePasswordComponent', 'selector': 'app-change-password'},{'name': 'CreateEditListingComponent', 'selector': 'app-form'},{'name': 'ListingDetailComponent', 'selector': 'app-detail'},{'name': 'ListingsComponent', 'selector': 'app-listings'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MessagesComponent', 'selector': 'app-messages'},{'name': 'MylistingsComponent', 'selector': 'app-mylistings'},{'name': 'NotFoundComponent', 'selector': 'app-not-found'},{'name': 'ProfileComponent', 'selector': 'app-profile'},{'name': 'SignupComponent', 'selector': 'app-signup'},{'name': 'TaxonomyComponent', 'selector': 'app-taxonomy'},{'name': 'TransactiondetailComponent', 'selector': 'app-transactiondetail'},{'name': 'TransactionsComponent', 'selector': 'app-transactions'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'TransactionsComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'TransactionsComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

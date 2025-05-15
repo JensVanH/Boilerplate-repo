@@ -1,0 +1,269 @@
+<div style="margin: 10px;">
+  <div class="container">
+
+    <!-- Row with Title -->
+    <div class="row">
+      <div class="offset-md-2 col-md-8 offset-lg-3 col-lg-6">
+        <h1>{{listingId < 0 ? 'Create Listing' : 'Edit Listing'}}</h1>
+      </div>
+    </div>
+
+    <!-- Row with Form -->
+    <div class="row">
+      <div class="offset-md-2 col-md-8 offset-lg-3 col-lg-6">
+        <div class="card">
+          <div class="card-body">
+
+            <!-- Form -->
+            <form [formGroup]="form" (ngSubmit)="createListing()">
+
+              <!-- Organization Selection -->
+              <div *ngIf="isExternalVerification" class="form-group position-relative">
+                <label for="selectOrganization">Select Organization <i style="color: red;">*</i></label>
+                <div class="custom-dropdown">
+                  <select 
+                    class="form-control" 
+                    id="selectOrganization" 
+                    formControlName="organizationID"
+                    (change)="onOrganizationChange($event)">
+                    <option value="" disabled>Select an Organization</option>
+                    <option *ngFor="let org of organizations" [value]="org.organizationID">
+                      {{ org.name }}
+                    </option>
+                  </select>
+                  <span class="dropdown-arrow">&#9662;</span> <!-- ▼ arrow -->
+                </div>
+              </div>
+
+              <!-- Verifier Selection -->
+              <div *ngIf="isExternalVerification" class="form-group position-relative">
+                <label for="selectVerifier">Select Verifier <i style="color: red;">*</i></label>
+                <div class="custom-dropdown">
+                  <select 
+                    class="form-control" 
+                    id="selectVerifier" 
+                    formControlName="verifierId">
+                    <option value="" disabled>Select a Verifier</option>
+                    <option *ngFor="let verifier of verifiers" [value]="verifier.userID">
+                      {{ verifier.firstName }} {{ verifier.lastName }}
+                    </option>
+                  </select>
+                  <span class="dropdown-arrow">&#9662;</span>
+                </div>
+              </div>
+
+              <!-- Name -->
+              <div class="form-group">
+                <label for="inputName">
+                  Name <i style="color: red;">*</i>
+                </label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="inputName"
+                  placeholder="Enter Name"
+                  formControlName="name">
+              </div>
+
+              <!-- Description -->
+              <div class="form-group">
+                <label for="textareaDescription">
+                  Description
+                </label>
+                <textarea
+                  class="form-control"
+                  id="textareaDescription"
+                  placeholder="Enter Description"
+                  rows="3"
+                  formControlName="description">
+                </textarea>
+              </div>
+
+              <!-- Available Assets -->
+              <div *ngIf="!ps.properties['Quantity']?.includes('One') && !ps.properties['Frequency']?.includes('Recurring')"  class="form-group">
+                <label for="inputAvailableAssets">
+                  Quantity Available
+                </label>
+                <input
+                  type="number"
+                  min=1
+                  class="form-control"
+                  id="inputAvailableAssets"
+                  placeholder="Enter Quantity Available"
+                  formControlName="availableAssets">
+              </div>
+
+              <!-- Date -->
+              <div *ngIf=" ps.properties['Listing Kind']?.includes('Service') && ps.properties['Frequency']?.includes('One-Time')" class="form-group">
+                <label for="inputDate">
+                  Date
+                </label>
+                <input
+                  type="date"
+                  class="form-control"
+                  id="inputDate"
+                  placeholder="Enter Start Date"
+                  formControlName="date">
+              </div>
+
+              <!-- Price -->
+              <div class="form-group">
+                <label for="inputPrice">
+                  Price <i style="color: red;">*</i>
+                </label>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      €
+                    </span>
+                  </div>
+                  <input
+                    type="number"
+                    min=0
+                    step=0.01
+                    class="form-control"
+                    id="inputPrice"
+                    placeholder="Enter Price"
+                    formControlName="price">
+                </div>
+              </div>
+
+              <!-- Location -->
+              <div  *ngIf="ps.properties['Listing Type']?.includes('Offline Service')" class="form-group">
+                <label for="inputLocation">
+                  Location
+                </label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="inputLocation"
+                  placeholder="Enter Location"
+                  formControlName="location">
+              </div>
+              
+              <!-- Image -->
+              <div *ngIf="!ps.properties['Listing Type']?.includes('Digital Good')" class="form-group">
+
+                <!-- Image Input-->
+                <label for="inputImage">
+                  Image
+                </label>
+                <div class="custom-file" id="inputImage">
+                  <input
+                    type="file"
+                    class="custom-file-input"
+                    id="customFile"
+                    (change)="fileSelected($event)">
+                  <label class="custom-file-label" for="customFile">
+                    {{fileName ? fileName : 'Choose Image'}}
+                  </label>
+                </div>
+
+                <!-- Display selected Image-->
+                <div *ngIf="imgSrc" style="display: flex;justify-content: center;">
+                  <img style="width: 318px;height: 200px;" [src]="imgSrc">
+                </div>
+                <!-- Remove Image Button-->
+                <button
+                  *ngIf="imgSrc"
+                  type="button"
+                  class="btn btn-outline-danger btn-block"
+                  (click)="imgSrc = null">
+                    Remove Image
+                </button>
+
+                <!-- Image Errors -->
+                <small *ngIf="imgError" class="form-text">
+                  <i style="color: red;">{{imgError}}</i>
+                </small>
+
+              </div>
+
+              <div *ngIf="ps.properties['Listing Type']?.includes('Digital Good')" class="form-group">
+
+                <!-- file Input-->
+                <label for="inputFile">
+                  File
+                </label>
+                <div class="custom-file" id="inputFile">
+                  <input
+                    type="file"
+                    class="custom-file-input"
+                    id="customFile"
+                    (change)="fileSelected($event)">
+                  <label class="custom-file-label" for="customFile">
+                    {{fileName ? fileName : 'Choose File'}}
+                  </label>
+                </div>
+              </div>
+
+              <div *ngIf="ps.properties['Listing Type']?.includes('Digital Service')" class="form-group">
+                <label for="inputLink">
+                  Link
+                </label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="inputLink"
+                  placeholder="Enter Link"
+                  formControlName="link">
+              </div>
+            </form>
+
+            <!-- Category selection-->
+            <div class="card">
+              <div class="card-body">
+
+                <h5 class="card-title">Categories</h5>
+
+                <!-- Categories -->
+                <div *ngFor="let category of categories">
+
+                  <!-- Category Name -->
+                  <h6 style="margin-top: 10px;">{{category[0]}}</h6>
+
+                  <!-- Fields in Category -->
+                  <div class="form-check" *ngFor="let c of category[1]">
+
+                    <!-- Checkbox -->
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      [id]="c.name"
+                      [(ngModel)]="c.selected">
+                    <label class="form-check-label" [for]="c.name">
+                      {{c.name}}
+                    </label>
+
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+            <small class="form-text">
+              <i style="color: red;">*</i> Required
+            </small>
+
+            <!-- Submit button -->
+            <button
+              type="submit"
+              (click)="createListing()"
+              class="btn btn-primary btn-block"
+              *ngIf="form.getRawValue() as f"
+              [disabled]="!(f.name && f.price)">
+                {{listingId < 0 ? 'Create' : 'Edit'}} Listing
+            </button>
+
+            <!-- Error Message -->
+            <small *ngIf="error" class="form-text">
+              <i style="color: red;">{{error}}</i>
+            </small>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

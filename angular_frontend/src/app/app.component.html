@@ -1,0 +1,158 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+  <!-- Company selection dropdown -->
+  <!-- <div class="dropdown">
+    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      {{ title }}
+    </a>
+    <ul class="dropdown-menu">
+      <li *ngFor="let company of companyService.companies">
+        <button class="dropdown-item" type="button" 
+          (click)="changeCompany(company)">
+          {{ company }}
+        </button>
+      </li>
+    </ul>
+  </div> -->
+
+  <!-- Company Title (instead of dropdown)  -->
+  <a class="navbar-brand" routerLink="/">
+    {{ title }}
+  </a>
+
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+    <!-- Left side Navbar -->
+    <ul class="navbar-nav me-auto">
+
+      <!-- Link to listings page -->
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/listings">
+          Listings 
+        </a>
+      </li>
+
+      <!-- Link to My Listings page -->
+      <li class="nav-item" *ngIf="user.isLoggedIn()">
+          <a 
+            class="nav-link" 
+            [routerLink]="user.isVerifier() ? '/verifier/mylistings' : '/mylistings'" 
+            [queryParams]="!user.isVerifier() ? {id: user.getId()} : null">
+          My Listings 
+        </a>
+      </li>
+
+      <!-- Link to My Transactions page-->
+      <li class="nav-item" *ngIf="user.isLoggedIn() && !user.isVerifier()">
+        <a class="nav-link" routerLink="/transactions">
+          My Transactions
+        </a>
+      </li>
+
+    </ul>
+
+    <!-- Right side Navbar (no user logged in) -->
+    <ul class="navbar-nav my-2 my-lg-0" *ngIf="!user.isLoggedIn()">
+
+      <!-- Link to sign up page-->
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/signup">
+          Sign Up
+        </a>
+      </li>
+
+      <!-- Linkt to log in page-->
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/login">
+          Log In
+        </a>
+      </li>
+
+    </ul>
+
+    <!-- Right side Navbar (user logged in) -->
+    <ul class="navbar-nav my-2 my-lg-0" *ngIf="user.isLoggedIn()">
+
+      <!-- Link to messages -->
+      <li class="nav-item">
+        <a routerLink="/messages" class="nav-link">
+          <!-- Messages Icon -->
+          <mat-icon>question_answer</mat-icon>
+
+          <!-- New Message amount -->
+          <span class="badge rounded-pill bg-danger" *ngIf="unseenMessages > 0">
+            {{unseenMessages}}
+          </span>
+        </a>
+      </li>
+      <!-- Notification dropdown -->
+      <li class="nav-item dropdown">
+        <!-- Dropdown Button -->
+        <a class="nav-link" href="#" id="notificationsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+
+          <!-- Bell Icon -->
+          <mat-icon> {{'notifications' + (getUnreadNotificationsAmount() > 0 ? '_active': '')}}</mat-icon>
+
+          <!-- Notifiaction amount -->
+          <span class="badge rounded-pill bg-danger" *ngIf="getUnreadNotificationsAmount() > 0">
+            {{getUnreadNotificationsAmount()}}
+          </span>
+
+        </a>
+
+        <!-- Dropdown Menu -->
+        <ul class="dropdown-menu overflow-auto" aria-labelledby="notificationsDropdown" style="max-height: 81vh">
+
+          <div *ngIf="notifications.length > 0" class="text-end">
+            <button (click)="deleteNotifications()" class="btn btn-block btn-outline-danger text-center">DELETE ALL</button>
+          </div>
+          
+
+          <!-- Notifications -->
+          <li *ngFor="let n of notifications">
+            <a class="dropdown-item" (click)="clickedNotification(n)" style="width: 300px;white-space: pre-wrap;">
+              <div *ngIf="n.viewed">- {{getNotificationMessage(n)}}</div>
+              <b *ngIf="!n.viewed">- {{getNotificationMessage(n)}}</b>
+            </a>
+          </li>
+          
+
+          <!-- No Notification -->
+          <li class="dropdown-item"  *ngIf="notifications.length === 0">
+            No notifications
+          </li>
+
+        </ul>
+      </li>
+
+      <!-- Link to change profile page -->
+      <li class="nav-item">
+        <a routerLink="/profile" class="nav-link">
+          {{user.getUserName()}}
+          <!-- User Profile Picture-->
+          <img style="border-radius: 50%; height: 30px; width: 30px" [src]="user.getProfilePicture()">
+        </a>
+      </li>
+
+      <!-- Log out button -->
+      <li class="nav-item">
+        <!-- Log out and go to login page-->
+        <a class="nav-link" routerLink="/login" (click)="user.logOut()" style="margin-top: 3px">
+          log out
+        </a>
+      </li>
+
+      <!-- Link to create listing page -->
+      <button class="btn btn-success" [routerLink]="['/listings', 'createEditListing']">+ Create Listing</button>
+
+    </ul>
+  </div>
+</nav>
+
+<router-outlet ></router-outlet>
+
+&nbsp;

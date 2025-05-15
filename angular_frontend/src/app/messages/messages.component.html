@@ -1,0 +1,89 @@
+<div class="container-fluid" style="max-width: none;">
+    <div class="row">
+
+        <div *ngIf="selected < 0 || !focus" class="col" style="max-width: 300px;">
+            <h1>Messages</h1>
+        </div>
+
+        <div *ngIf="selected >= 0 || !focus" class="col row">
+            <div class="col-auto" *ngIf="focus">
+                <!-- Back button for focus mode -->
+                <button class="btn btn-secondary-outline" (click)="selected = -1" style="border-radius: 100%;">
+                    <mat-icon style="vertical-align: middle;">keyboard_arrow_left</mat-icon>
+                </button>
+            </div>
+            <div class="col" style="text-align: center;">
+                <h1>{{ selectedUserName }}</h1>
+            </div>
+        </div>
+        
+    </div>
+    <div class="row" style="height:85vh">
+
+      <div *ngIf="selected < 0 || !focus" class="col" style="padding-left: 0px;max-width: 300px;">
+
+        <!-- Last Messages Window -->
+        <ul class="list-group">
+          <li *ngFor="let m of lastMessages" class="list-group-item" style="padding:0px"
+            [class.active]="m.receiverID === selected || m.senderID === selected" aria-current="true">
+
+            <!-- Last Message (in bold when unseen) -->
+            <button type="button" class="btn btn-secondary-outline d-inline-block text-truncate" 
+                [style]="'width:100%;height:100%;text-align:left;' + (m.receiverID === user.getId() && !m.viewed ? 'font-weight: bold;' : '')" (click)="selectPerson(m)">
+                <h6>
+                    {{ m.senderID === user.getId() ? m.receiver : m.sender }}  <span *ngIf="m.receiverID === user.getId() && !m.viewed" class="badge bg-secondary">New Messages</span>
+                </h6>
+                {{ m.message }}
+            </button>
+          </li>
+        </ul>
+      </div>
+
+      <div class="col" *ngIf="selected >= 0 || !focus">
+
+        <!-- Chat Window -->
+        <div class="card" style="height:100%">
+            <div class="card-body" style="padding: 0;">
+
+                <!-- Chat -->
+                <ul #chat class="list-group overflow-auto" style="max-height: 81vh">
+                    <li *ngFor="let m of messages; index as i" class="list-group-item no-border">
+                        <!-- Date (only show new date) -->
+                        <div class="row" *ngIf="i === 0 || (simplifyDate(m.createdAt) !== simplifyDate(messages[i-1].createdAt))" style="text-align: center;">
+                            <small>{{ simplifyDate(m.createdAt) }}</small>
+                        </div>
+                        <div class="row">
+                            <!-- Message -->
+                            <div class="col d-flex" [class.flex-row-reverse]="m.senderID !== selected">
+                                <p class="message">
+                                    {{ m.message }}
+                                </p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+
+                <!-- Send Messages Input-->
+                <div *ngIf="selected >= 0" style="position:absolute;bottom:0;right:0;left:0">
+                    <div class="input-group" [class.disabled]="locked">
+                        <input type="text"
+                            class="form-control" 
+                            [(ngModel)]="message" 
+                            placeholder="Write your message here..." 
+                            aria-describedby="send-message-button"
+                            (keypress)="keyPressed($event)"
+                        >
+                        <button class="btn btn-primary" type="button" id="send-message-button" (click)="sendMessage()">
+                            <mat-icon style="vertical-align: middle;">send</mat-icon>
+                        </button>
+                    </div>
+                </div>
+                
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+<div>
+    
+</div>

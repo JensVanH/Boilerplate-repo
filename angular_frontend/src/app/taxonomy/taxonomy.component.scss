@@ -1,0 +1,67 @@
+.add-option {
+    background-color: #fff;
+    color: blue;
+    text-align: center;
+  }
+
+.central {
+    display: inline-block;
+    flex-wrap: nowrap;
+    flex-direction: row;
+}
+
+  .display-6 {
+    margin-top: 10px;
+  }
+
+  .button {
+    background-color: blue;
+    color: white;
+  }
+
+.icon-background2 {
+    color:  #0288D1;
+ }
+ 
+ .fa-info {
+  color:white;
+  font-size: 10px;
+ }
+ 
+ .fa-circle {
+    font-size: 20px;
+ }
+
+
+
+ .circle-container {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+}
+
+.circle {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #007bff;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+}
+
+.question-mark {
+  font-size: 1.5em;
+}
+
+
+.clickable {
+  cursor: pointer; /* Add a pointer cursor to indicate clickability */
+  transition: background-color 0.2s; /* Optional: Add a smooth transition effect */
+}
+
+.clickable:hover {
+  background-color: #f0f0f0; /* Optional: Change background color on hover to indicate interactivity */
+}

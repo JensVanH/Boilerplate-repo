@@ -1,0 +1,102 @@
+<!-- Only display listing when data is fetched and no error has occurred -->
+<div *ngIf="listing && !error" class="d-flex justify-content-center" style="margin: 10px;">
+  <div class="container">
+
+    <!-- Row containing listing name + action buttons -->
+    <div class="row">
+
+      <!-- Listing name -->
+      <div class="col">
+        <h1>
+          {{ listing.name }}
+        <p style="font-size: 0.6em; margin-top: -10px;">
+            <span *ngIf="listing.status === 'cancelled'" style="color: darkred;">(CANCELLED)</span>
+            <span *ngIf="listing.availableAssets === 0" style="color: grey;">(SOLD OUT)</span>
+            <span *ngIf="listing.status === 'rejected'" style="color: red;">(REJECTED)</span>
+            <span *ngIf="listing.status === 'active'" style="color: green;">(APPROVED)</span>
+            <span *ngIf="listing.status === 'pending'" style="color: orange;">(WAITING FOR APPROVAL)</span>
+        </p>
+        </h1>
+      </div>
+
+      <!-- Approve/Reject Buttons -->
+      <div class="col text-end" *ngIf="canAct">
+        <div class="btn-group" role="group">
+          <button class="btn btn-lg btn-success" (click)="approveListing()">Approve</button>
+          <button class="btn btn-lg btn-danger" (click)="rejectListing()">Reject</button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Row containing Image and Listing Info -->
+    <div class="row">
+
+      <!-- Image -->
+      <div *ngIf="!ps.properties['Listing Type']?.includes('Digital Good')" class="col-8">
+        <img style="width: 100%;border-radius: 5px;"
+          [src]="listing.picture ? listing.picture : image.getPlaceholderImage()">
+      </div>
+
+      <!-- Info Section -->
+      <div class="col">
+
+        <p> </p>
+
+
+        <p><b>Asking Price: </b>€{{listing.price}}</p>
+
+        <!-- Available Assets -->
+        <p *ngIf="!ps.properties['Quantity']?.includes('One') && (listing.availableAssets || listing.availableAssets === 0)">
+          <b>Quantity Available: </b>{{listing.availableAssets}}
+        </p>
+
+        <!-- Date -->
+        <p *ngIf="listing.date">
+          <b>Date: </b>{{listing.date}}
+        </p>
+
+        <!-- Location -->
+        <div *ngIf="listing.location">
+          <b>Location: </b>{{listing.location}}
+          <div class="map" id="map" style="height:300px; margin-top: 10px;"></div>
+        </div>
+
+        <!-- Creator -->
+        <p>
+          <b>Offered by: </b>{{listing.userName}}
+        </p>
+
+        <!-- Verifier (self) -->
+        <p *ngIf="listing.verifierFirstName && listing.verifierLastName">
+          <b>Verifier: </b>{{ listing.verifierFirstName }} {{ listing.verifierLastName }}
+        </p>
+
+        <!-- Verifier's Organization (if available) -->
+        <p *ngIf="listing.verifierOrganizationName">
+          <b>Verifier's Organization: </b>{{ listing.verifierOrganizationName }}
+        </p>
+
+        <!-- Categories -->
+        <p *ngFor="let c of listing.groupedCategories">
+          <b>{{c[0]}}:</b> {{c[1].join(", ")}}
+        </p>
+
+        <!-- Description -->
+        <p *ngIf="listing.description">
+          <b>Description:</b><br>
+          {{listing.description}}
+        </p>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Error Display -->
+<div *ngIf="error" style="margin: 10px;">
+  <h1>ERROR</h1>
+  <p>{{error}}</p>
+  <button class="btn btn-danger" (click)="error=''">OK</button>
+</div>

@@ -1,0 +1,215 @@
+<div style="margin: 10px;">
+  <div class="container">
+    <div class="row">
+      <div class="offset-md-2 col-md-8 offset-lg-3 col-lg-6">
+
+        <!-- Title + change password button-->
+        <div class="row">
+
+          <!-- Title -->
+          <div class="col">
+            <h1>Edit User Data</h1>
+          </div>
+
+          <!-- Link to change password page -->
+          <div class="col">
+            <button class="btn btn-block btn-info" routerLink="/profile/changePassword">
+              CHANGE PASSWORD
+            </button>
+          </div>
+
+        </div>
+
+        <!-- Form -->
+        <div class="card">
+          <div class="card-body">
+            <form [formGroup]="form" (ngSubmit)="updateProfile()">
+
+              <!-- Role (for verifiers only) -->
+              <div *ngIf="user.isVerifier()" class="form-group">
+                <label>Role</label>
+                <input type="text" class="form-control" value="Verifier" readonly>
+              </div>
+
+              <!-- Organization (for verifiers only) -->
+              <div *ngIf="ps.properties['Listing Verification Mechanism']?.includes('External Verification') && user.isVerifier()" class="form-group">
+                <label>Organization</label>
+                <input type="text" class="form-control" formControlName="organizationName" readonly>
+              </div>
+
+
+              <!-- First Name -->
+              <div *ngIf="ps.properties['User Type']?.includes('Person')" class="form-group">
+                <label for="inputFirstName">
+                  First Name
+                </label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="inputFirstName"
+                  placeholder="Enter First Name"
+                  formControlName="firstName">
+              </div>
+
+              <!-- Last Name -->
+              <div *ngIf="ps.properties['User Type']?.includes('Person')" class="form-group">
+                <label for="inputLastName">
+                  Last Name
+                </label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="inputLastName"
+                  placeholder="Enter Last Name"
+                  formControlName="lastName">
+              </div>
+
+              <div *ngIf="ps.properties['User Type']?.includes('Organisation')" class="form-group">
+                <label for="inputOrganisation">
+                  Organisation
+                </label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="inputOrganisation"
+                  placeholder="Enter Organisation"
+                  formControlName="organisation">
+              </div>
+
+              <!-- Email -->
+              <div class="form-group">
+                <label for="inputEmail">
+                  Email Address <i style="color: red;">*</i>
+                </label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="inputEmail"
+                  placeholder="Enter email"
+                  formControlName="email">
+              </div>
+
+              <!-- Username -->
+              <div class="form-group">
+                <label for="inputUsername">
+                  Username <i style="color: red;">*</i>
+                </label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="inputUsername"
+                  placeholder="Enter username"
+                  formControlName="userName">
+              </div>
+
+              <!-- Gender -->
+              <div *ngIf="ps.properties['User Type']?.includes('Person')" class="form-group">
+                <label for="inputGender">
+                  Gender
+                </label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="inputGender"
+                  placeholder="Enter Gender"
+                  formControlName="gender">
+              </div>
+
+              <!-- Address -->
+              <div class="form-group">
+                <label for="inputAddress">
+                  Address
+                </label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="inputAddress"
+                  placeholder="Enter Address"
+                  formControlName="address">
+              </div>
+
+              <!-- Birth Date -->
+              <div *ngIf="ps.properties['User Type']?.includes('Person')" class="form-group">
+                <label for="inputBirthDate">
+                  Birth Date
+                </label>
+                <input
+                  type="date"
+                  class="form-control"
+                  id="inputBirthDate"
+                  placeholder="Enter Birth Date"
+                  formControlName="birthDate">
+              </div>
+
+              <!-- Phone Number -->
+              <div class="form-group">
+                <label for="inputPhoneNumber">
+                  Phone number
+                </label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="inputPhoneNumber"
+                  placeholder="Enter Phone Number"
+                  formControlName="phoneNumber">
+              </div>
+
+              <!-- Profile Image -->
+              <div class="form-group">
+
+                <!-- Image Input -->
+                <label for="inputImage">
+                  Profile picture
+                </label>
+                <div class="custom-file" id="inputImage">
+                  <input
+                    type="file"
+                    class="custom-file-input"
+                    id="customFile"
+                    (change)="fileSelected($event)">
+                  <label
+                    class="custom-file-label"
+                    for="customFile">
+                      {{fileName ? fileName : 'Choose Image'}}
+                  </label>
+                </div>
+
+                <!-- Display selected Image -->
+                <div *ngIf="imgSrc" style="display: flex;justify-content: center;">
+                  <img style="width: 200px;height: 200px;border-radius: 50%;" [src]="imgSrc">
+                </div>
+                <!-- Remove Image Button -->
+                <button *ngIf="imgSrc" type="button" class="btn btn-outline-danger btn-block" (click)="imgSrc = null">Remove picture</button>
+
+                <!-- Image Errors-->
+                <small *ngIf="imgError" class="form-text">
+                  <i style="color: red;">{{imgError}}</i>
+                </small>
+
+              </div>
+
+              <small class="form-text">
+                <i style="color: red;">*</i> Required
+              </small>
+
+              <!-- Submit Button -->
+              <button
+                type="submit"
+                class="btn btn-primary btn-block"
+                [disabled]="!form.getRawValue().email">
+                  UPDATE PROFILE
+              </button>
+
+              <!-- Errors -->
+              <small *ngIf="error" class="form-text">
+                <i style="color: red;">{{error}}</i>
+              </small>
+
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

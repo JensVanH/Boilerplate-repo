@@ -1,0 +1,8 @@
+<div style="margin: 10px;">
+    <div class="container" *ngIf="transaction">
+        <div class="col-auto" style="cursor:pointer;">
+            <img *ngIf="transaction" class="card-img-left" [src]="transaction.listing.file"
+                style="width: 318px;height: 200;" [alt]="transaction.listing.name">
+        </div>
+    </div>
+</div>

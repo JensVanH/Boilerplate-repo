@@ -1,0 +1,202 @@
+<div style="margin: 10px;">
+  <div class="row">
+    <!-- Right Col (All main info)-->
+    <!-- <div class="col"> -->
+    <div class="container">
+
+      <!-- Row containing search bar and order preference -->
+      <!-- <div class="row"> -->
+      <!-- Row containing amount of results and page nagivation -->
+      <!-- <div class="row"> -->
+
+      <!-- Show cancelled listings checkbox -->
+      <!-- <div class="col-auto" *ngIf="hasCancelled">
+              <div class="card">
+                <div class="card-body" style="padding:10px">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="checkActive"
+                      [(ngModel)]="activeListings">
+                    <label class="form-check-label" for="checkActive">
+                      Only show active transactions
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+      <!-- Row containing transactions -->
+      <div class="row">
+        <div class="col">
+          <!-- Listings -->
+          <div class="card" *ngFor="let t of transactions" style="margin-bottom: 5px;">
+
+            <!-- Listing -->
+            <div class="row no-gutters">
+
+              <!-- Image -->
+              <div *ngIf="!ps.properties['Listing Type']?.includes('Digital Good')" class="col-auto"
+                style="cursor:pointer;" [routerLink]="['/transactions', 'details', t.transactionID]">
+                <img class="card-img-left" [src]="t.Listing.picture ? t.Listing.picture : image.getPlaceholderImage()"
+                  style=" max-width: 100%; height: auto; display: block; margin: 0 auto;" [alt]="t.Listing.name">
+              </div>
+
+              <!-- Listing info -->
+              <div class="col">
+                <div class="card-body">
+                  <div class="row no-gutters">
+
+                    <!-- Details -->
+                    <div class="col">
+
+                      <!-- Title -->
+                      <h5 class="card-title">{{t.Listing.name}}
+                        <b *ngIf="t.status ==='cancelled'" style="color: red;"> (CANCELLED) </b>
+                      </h5>
+
+                      <!-- Transaction Details -->
+                      <div>
+                        <div
+                          *ngIf="ps.properties['Listing Kind']?.includes('Service') && ps.properties['Frequency']?.includes('One-Time')">
+                          Date: <b>{{t.Listing.date}}</b></div>
+                        <!-- div *ngIf="properties['Listing Kind']?.includes('Service') && properties['Frequency']?.includes('Recurring')">Date: <b>{{t.date}}</b></div-->
+                        <!--div *ngIf="properties['Listing Kind']?.includes('Service') && properties['Frequency']?.includes('Recurring')">Time: <b>{{t.time.split('T').join(' ').split(':').slice(0, -1).join(':')}}</b></div-->
+                        <div *ngIf="!ps.properties['Quantity']?.includes('One') && !ps.properties['Frequency']?.includes('Recurring')">Quantity: <b>{{t.numberOfAssets}}</b>
+                        </div>
+                        <div *ngIf="!ps.properties['Price Calculation']?.includes('By Quantity')">Price:
+                          <b>€{{t.price}}</b></div>
+                        <div *ngIf="ps.properties['Price Calculation']?.includes('By Quantity')"> Total Price:
+                          <b>€{{t.price * t.numberOfAssets}}</b></div>
+                        <div>Status: <b>{{t.status}}</b></div>
+                        <!-- div *ngIf="ps.properties['Listing Type']?.includes('Digital Service')"><a href="{{t.Listing.link}}">Meeting Link</a></div -->
+                        <div *ngIf="ps.properties['Listing Type']?.includes('Physical Good')">Address:
+                          <b>{{t.sendAddress}}</b></div>
+                        <div *ngIf="ps.properties['Listing Type']?.includes('Digital Good')"><a style="cursor:pointer;"
+                            [routerLink]="['/transactions', 'details', t.transactionID]">Event File</a></div>
+                        <div
+                          *ngIf="ps.properties['Listing Kind']?.includes('Service') && ps.properties['Frequency']?.includes('Recurring')">
+                          Bookings:
+                          <table class="table" *ngIf="t.bookings && t.bookings.length > 0">
+                            <thead class="thead-light">
+                              <!-- Table headers -->
+                              <tr>
+                                <th scope="col">Date</th>
+                                <th score="col" *ngIf="ps.properties['Time Unit']?.includes('Hour')">Time</th>
+                                <th score="col">Info</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let b of t.bookings">
+                                <!-- Date -->
+                                <td>
+                                  {{ b.startDate === b.endDate ? b.startDate : b.startDate + " - " + b.endDate }}
+                                </td>
+                                <!-- Time -->
+                                <td *ngIf="ps.properties['Time Unit']?.includes('Hour')">
+                                  {{ b.startTime }} - {{ b.endTime }}
+                                </td>
+                                <!-- Info -->
+                                <td>
+                                  {{ b.info }}
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+
+                          <!-- No bookings -->
+                          <div *ngIf="!t.bookings || t.bookings.length === 0">
+                            <b>No Bookings On this transaction</b>
+                          </div>
+                        </div>
+                      </div>
+
+                     </div>
+
+                    <!-- Actions -->
+
+                  </div>
+                  <div *ngIf="t.status !== 'cancelled'">
+                    <div class="btn-group" role="group">
+
+                       <!-- Contact (only when user is not owner of listing) -->
+                       <button
+                       *ngIf="user.isLoggedIn() && ps.properties['Conversation System']?.includes('Transaction Conversation')"
+                       class="btn-primary" (click)="contactOwner(t)">
+                       Message Seller
+                     </button>
+
+                      <!-- Cancel Transaction-->
+                      <button class="btn btn-danger" (click)="cancelTransaction(t.transactionID)">
+                        CANCEL
+                      </button>
+
+                      <!-- Review listing -->
+                      <button
+                        *ngIf="selectedTransactionForReview !== t.transactionID && t.reviewable && ps.properties['Review By']?.includes('By Customer')"
+                        class="btn btn-success"
+                        (click)="selectedTransactionForReview = t.transactionID;form.reset();rating=0;hoverRating=0">
+                        Review
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Review form (only for transactions) -->
+            <div *ngIf="selectedTransactionForReview === t.transactionID" style="margin:10px">
+              <form [formGroup]="form" (ngSubmit)="postReview()">
+
+                <!-- Title + Rating -->
+                <h4>
+                  Review:
+                  <!-- Rating -->
+                  <ngb-rating max=5 [(rate)]="rating" (hover)="hoverRating = $event" (leave)="hoverRating = 0">
+                    <ng-template let-fill="fill" let-index="index">
+                      <span
+                        [style]="'font-size: 50px;color: ' + (index < hoverRating && index >= rating ? '#FAB81E': index < hoverRating ? 'orange' : index >= rating ? 'gray' : '#FFC300')">
+                        &#9733;
+                      </span>
+                    </ng-template>
+                  </ngb-rating>
+                </h4>
+
+                <!-- Comment -->
+                <div class="form-group">
+                  <label for="textareaComment">
+                    Comment (optional)
+                  </label>
+                  <textarea class="form-control" id="textareaComment" placeholder="Enter comment" rows="3"
+                    formControlName="comment">
+                      </textarea>
+                </div>
+
+                <!-- Actions -->
+                <div class="btn-group" role="group">
+
+                  <!-- Cancel reviewing -->
+                  <button type="button" class="btn btn-danger" (click)="selectedTransactionForReview = -1">
+                    Cancel Review
+                  </button>
+
+                  <!-- Post review -->
+                  <button class="btn btn-success" [disabled]="rating === 0">
+                    Post Review
+                  </button>
+
+                </div>
+
+              </form>
+            </div>
+            <!-- </div> -->
+          </div>
+
+          <!-- No results -->
+          <div *ngIf="transactions!== undefined && transactions.length === 0">
+            <b>No Transactions Found</b>
+          </div>
+          <!-- </div>
+          </div> -->
+        </div>
+
+      </div>
+    </div>

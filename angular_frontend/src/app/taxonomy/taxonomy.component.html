@@ -1,0 +1,45 @@
+<div class="text-center">
+  <H1>Taxonomy</H1>
+  Select Company:
+  <div>
+    <!-- <select [(ngModel)]="companyName" (ngModelChange)="onCompanyChange($event)">
+      <option *ngFor="let company of companies" [ngValue]="company.name">{{company.name}}
+      </option>
+      <option class="add-option">+ Add</option>
+    </select> -->
+    <p>{{this.companyName}}</p>
+  </div>
+  <sup>m</sup> = mandatory, <sup>e</sup> = exclusive, <sup>o</sup> = optional, <sup>d</sup> = dependent
+  <br>
+  
+
+
+  <div *ngFor="let d of this.taxonomy | keyvalue | orderBy:'orderNr'">
+    <!-- Dimensions -->
+    <span class="clickable" [ngbPopover]="popoverContent" triggers="click" (click)="showPopup = true">
+      
+      <h4 class="display-6">{{d.key}} <sup *ngIf="d.value.mandatory">m</sup><sup *ngIf="!d.value.mandatory">o</sup></h4>
+    </span>
+
+    <ng-template #popoverContent >
+      <div *ngIf="showPopup" class="text-center">
+        <p>{{ d.value.description }}</p>
+        <button class="button" (click)="showPopup = false">Close</button>
+      </div>
+    </ng-template>
+
+    <!-- DimensionValues-->
+
+    <div class="form-check form-check-inline" *ngFor="let dv of d.value">
+      <input type="checkbox" class="form-check-input" id={{dv.value}} autocomplete="off" [value]="dv.value"
+        [checked]=dv.selected (click)="onCheckboxChange($event, dv, d.key)" [disabled]="!dv.selectable">
+      <label class="form-check-label" for={{dv.value}}> {{dv.value}}
+        <sup *ngIf="dv.exclusive">e</sup>
+        <sup *ngIf="dv.dependency && dv.exclusive">, </sup>
+        <sup *ngIf="dv.dependency">d</sup>
+      </label>
+    </div>
+  </div>
+  <br>
+  <button class="button" (click)="checkMandatoryValues()">Save</button>
+</div>

@@ -1,0 +1,27 @@
+{
+  "development": {
+    "username": "jens2",
+    "password": "jens2",
+    "database": "jens2",
+    "host": "ugmarket.ugent.be",
+    "port": 13306,
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "jens2",
+    "password": "jens2",
+    "database": "jens2",
+    "host": "ugmarket.ugent.be",
+    "port": 13306,
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "jens2",
+    "password": "jens2",
+    "database": "jens2",
+    "host": "ugmarket.ugent.be",
+    "port": 13306,
+    "dialect": "mysql"
+  }
+}
+

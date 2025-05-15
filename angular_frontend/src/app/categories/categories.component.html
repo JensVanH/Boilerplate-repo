@@ -1,0 +1,107 @@
+<div style="margin: 10px;">
+  <div class="container">
+    <div class="row">
+      <div class="offset-md-2 col-md-8 offset-lg-3 col-lg-6">
+        <div class="card">
+          <div class="card-body">
+
+            <!-- Category List-->
+            <div *ngFor="let category of categories; let i = index">
+              <!-- Category -->
+              <h5 class="card-title">
+                <div class="input-group mb-3">
+
+                  <!-- Category Name-->
+                  <input type="text" class="form-control" [placeholder]="category[0]" readonly>
+
+                  <!-- Remove Category Button-->
+                  <div class="input-group-append">
+                    <button class="btn btn-danger" (click)="removeCategory(i)">
+                      Remove
+                    </button>
+                  </div>
+
+                </div>
+              </h5>
+
+              <!-- Options in Category -->
+              <ul>
+
+                <!-- Options -->
+                <li *ngFor="let option of category[1]; let j = index">
+                  <div class="input-group mb-3">
+
+                    <!-- Option Name-->
+                    <input type="text" class="form-control" [placeholder]="option" readonly>
+
+                    <!-- Remove Option Button-->
+                    <div class="input-group-append">
+                      <button class="btn btn-danger" (click)="removeOption(i, j)">
+                        Remove
+                      </button>
+                    </div>
+
+                  </div>
+                </li>
+
+                <!-- Add Option -->
+                <li>
+                  <div class="input-group mb-3">
+
+                    <!-- New Option Name -->
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="option name"
+                      [(ngModel)]="newOptionName[i]">
+
+                    <!-- Add Option Button-->
+                    <div class="input-group-append">
+                      <button
+                        class="btn btn-primary"
+                        (click)="addOption(i)"
+                        [disabled]="loading || !newOptionName[i]">
+                          Add Option
+                      </button>
+                    </div>
+
+                  </div>
+                </li>
+
+              </ul>
+
+            </div>
+
+            <!-- Add Category -->
+            <div class="input-group mb-3">
+
+              <!-- New Category Name -->
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Category name"
+                [(ngModel)]="newCategoryName">
+
+              <!-- Add new Category -->
+              <div class="input-group-append">
+                <button
+                  class="btn btn-primary"
+                  (click)="addCategory()"
+                  [disabled]="loading || !newCategoryName">
+                    Add Category
+                </button>
+              </div>
+
+            </div>
+
+            <!-- Errors -->
+            <h5 *ngIf="error">
+              <i style="color: red;">{{error}}</i>
+            </h5>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

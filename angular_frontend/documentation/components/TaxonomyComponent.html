@@ -1,0 +1,1343 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>marketplace documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">marketplace documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li
+  >
+  TaxonomyComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/taxonomy/taxonomy.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-taxonomy</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./taxonomy.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./taxonomy.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#companies" >companies</a>
+                            </li>
+                            <li>
+                                <a href="#companyName" >companyName</a>
+                            </li>
+                            <li>
+                                <a href="#constraints" >constraints</a>
+                            </li>
+                            <li>
+                                <a href="#propertyValuesFormArray" >propertyValuesFormArray</a>
+                            </li>
+                            <li>
+                                <a href="#showPopup" >showPopup</a>
+                            </li>
+                            <li>
+                                <a href="#taxonomy" >taxonomy</a>
+                            </li>
+                            <li>
+                                <a href="#taxonomyForm" >taxonomyForm</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#checkDependencyConstraint" >checkDependencyConstraint</a>
+                            </li>
+                            <li>
+                                <a href="#checkExclusiveConstraint" >checkExclusiveConstraint</a>
+                            </li>
+                            <li>
+                                <a href="#checkMandatoryValues" >checkMandatoryValues</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#fetchCompany" >fetchCompany</a>
+                            </li>
+                            <li>
+                                <a href="#fetchConstraints" >fetchConstraints</a>
+                            </li>
+                            <li>
+                                <a href="#fetchTaxonomy" >fetchTaxonomy</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#onCheckboxChange" >onCheckboxChange</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(db: <a href="../injectables/DbConnectionService.html" target="_self">DbConnectionService</a>, formBuilder: UntypedFormBuilder, companyService: <a href="../injectables/CompanyService.html" target="_self">CompanyService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/taxonomy/taxonomy.component.ts:20</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>db</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/DbConnectionService.html" target="_self" >DbConnectionService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>formBuilder</td>
+                                                  
+                                                        <td>
+                                                                    <code>UntypedFormBuilder</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>companyService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/CompanyService.html" target="_self" >CompanyService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="checkDependencyConstraint"></a>
+                    <span class="name">
+                        <span ><b>checkDependencyConstraint</b></span>
+                        <a href="#checkDependencyConstraint"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>checkDependencyConstraint(value)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="88"
+                            class="link-to-prism">src/app/taxonomy/taxonomy.component.ts:88</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>value</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="checkExclusiveConstraint"></a>
+                    <span class="name">
+                        <span ><b>checkExclusiveConstraint</b></span>
+                        <a href="#checkExclusiveConstraint"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>checkExclusiveConstraint(dimension, value)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="112"
+                            class="link-to-prism">src/app/taxonomy/taxonomy.component.ts:112</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>dimension</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>value</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="checkMandatoryValues"></a>
+                    <span class="name">
+                        <span ><b>checkMandatoryValues</b></span>
+                        <a href="#checkMandatoryValues"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>checkMandatoryValues()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="183"
+                            class="link-to-prism">src/app/taxonomy/taxonomy.component.ts:183</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="fetchCompany"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>fetchCompany</b></span>
+                        <a href="#fetchCompany"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>fetchCompany()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="174"
+                            class="link-to-prism">src/app/taxonomy/taxonomy.component.ts:174</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="fetchConstraints"></a>
+                    <span class="name">
+                        <span ><b>fetchConstraints</b></span>
+                        <a href="#fetchConstraints"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>fetchConstraints()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="82"
+                            class="link-to-prism">src/app/taxonomy/taxonomy.component.ts:82</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="fetchTaxonomy"></a>
+                    <span class="name">
+                        <span ><b>fetchTaxonomy</b></span>
+                        <a href="#fetchTaxonomy"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>fetchTaxonomy()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="52"
+                            class="link-to-prism">src/app/taxonomy/taxonomy.component.ts:52</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="35"
+                            class="link-to-prism">src/app/taxonomy/taxonomy.component.ts:35</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onCheckboxChange"></a>
+                    <span class="name">
+                        <span ><b>onCheckboxChange</b></span>
+                        <a href="#onCheckboxChange"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onCheckboxChange(e, value: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, dimension)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="132"
+                            class="link-to-prism">src/app/taxonomy/taxonomy.component.ts:132</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>e</td>
+                                    <td>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>value</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>dimension</td>
+                                    <td>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="companies"></a>
+                    <span class="name">
+                        <span ><b>companies</b></span>
+                        <a href="#companies"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/taxonomy/taxonomy.component.ts:17</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="companyName"></a>
+                    <span class="name">
+                        <span ><b>companyName</b></span>
+                        <a href="#companyName"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/taxonomy/taxonomy.component.ts:18</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="constraints"></a>
+                    <span class="name">
+                        <span ><b>constraints</b></span>
+                        <a href="#constraints"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/taxonomy/taxonomy.component.ts:19</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="propertyValuesFormArray"></a>
+                    <span class="name">
+                        <span ><b>propertyValuesFormArray</b></span>
+                        <a href="#propertyValuesFormArray"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>UntypedFormArray</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/taxonomy/taxonomy.component.ts:16</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showPopup"></a>
+                    <span class="name">
+                        <span ><b>showPopup</b></span>
+                        <a href="#showPopup"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/taxonomy/taxonomy.component.ts:20</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="taxonomy"></a>
+                    <span class="name">
+                        <span ><b>taxonomy</b></span>
+                        <a href="#taxonomy"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{}</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/taxonomy/taxonomy.component.ts:13</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="taxonomyForm"></a>
+                    <span class="name">
+                        <span ><b>taxonomyForm</b></span>
+                        <a href="#taxonomyForm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>UntypedFormGroup</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/taxonomy/taxonomy.component.ts:15</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
+import { UntypedFormArray, UntypedFormBuilder, UntypedFormControl, UntypedFormGroup } from &#x27;@angular/forms&#x27;;
+import { DbConnectionService } from &#x27;../services/db-connection.service&#x27;;
+import { CompanyService } from &#x27;../services/company.service&#x27;;
+
+@Component({
+  selector: &#x27;app-taxonomy&#x27;,
+  templateUrl: &#x27;./taxonomy.component.html&#x27;,
+  styleUrls: [&#x27;./taxonomy.component.scss&#x27;]
+})
+export class TaxonomyComponent implements OnInit {
+
+  taxonomy &#x3D; {};
+  // company: string;
+  taxonomyForm: UntypedFormGroup;
+  propertyValuesFormArray: UntypedFormArray;
+  companies: any;
+  companyName: string;
+  constraints: any;
+  showPopup &#x3D; false;
+
+
+  constructor(
+    private db: DbConnectionService,
+    private formBuilder: UntypedFormBuilder,
+    private companyService:CompanyService
+  ) {
+    this.taxonomyForm &#x3D; this.formBuilder.group({
+      dimensionValue: this.formBuilder.array([])
+
+    })
+    
+  }
+
+  ngOnInit(): void {
+    this.fetchCompany();
+
+    this.propertyValuesFormArray &#x3D; this.taxonomyForm.get(&#x27;dimensionValue&#x27;) as UntypedFormArray;
+
+    // this.db.getSelectedCompany().then(data &#x3D;&gt;
+    //   {this.company &#x3D; Object.values(data)[0]})
+
+    // this.db.getCompanies().then(data &#x3D;&gt;
+    //   (this.companies &#x3D; data))
+    this.fetchConstraints()
+    //this.fetchTaxonomy()
+
+  }
+
+
+
+  fetchTaxonomy() {
+    this.db.getTaxonomy()
+      .then(taxonomy &#x3D;&gt; {
+        taxonomy[&#x27;taxonomy&#x27;].forEach(x &#x3D;&gt; {
+          if (x.dimension in this.taxonomy) {
+            this.taxonomy[x.dimension].push({ value: x.dimensionValue, selected: x.selected, exclusive: x.exclusive, selectable: 1 })
+          }
+          else {
+            this.taxonomy[x.dimension] &#x3D; [{ value: x.dimensionValue, selected: x.selected, exclusive: x.exclusive, selectable: 1 }]
+            this.taxonomy[x.dimension][&#x27;mandatory&#x27;] &#x3D; x.mandatory;
+            this.taxonomy[x.dimension][&#x27;orderNr&#x27;] &#x3D; x.orderNrDimension
+            this.taxonomy[x.dimension][&#x27;description&#x27;] &#x3D; x.description
+          }
+          if (x.selected) {
+            this.propertyValuesFormArray.push(new UntypedFormControl(x.dimensionValue));
+          }
+        })
+
+        for (const [dimension, values] of Object.entries(this.taxonomy)) {
+          (values as any).forEach(value &#x3D;&gt; {
+            if (value.selected) {
+              this.checkDependencyConstraint(value)
+              this.checkExclusiveConstraint(dimension, value)
+            }
+          })
+        }
+
+      })
+  }
+
+  fetchConstraints() {
+    this.db.getConstraints().then(r &#x3D;&gt; {
+      this.constraints &#x3D; r[&#x27;constraints&#x27;]
+    })
+  }
+
+  checkDependencyConstraint(value) {
+    if (typeof this.constraints !&#x3D;&#x3D; &#x27;undefined&#x27; &amp;&amp; Array.isArray(this.constraints)) {
+      this.constraints.forEach(constraint &#x3D;&gt; {
+
+        if (constraint.value &#x3D;&#x3D;&#x3D; value.value) {
+
+          const index &#x3D; this.taxonomy[constraint.dimension].findIndex(cv &#x3D;&gt; cv.value &#x3D;&#x3D;&#x3D; constraint.constraintsValue)
+          if (index !&#x3D;&#x3D; -1) {
+            if (value.selected) {
+              this.taxonomy[constraint.dimension][index].selectable &#x3D; 0
+              this.taxonomy[constraint.dimension][index].selected &#x3D; 0
+              this.taxonomy[constraint.dimension][index][&#x27;dependency&#x27;] &#x3D; 1
+              this.db.deleteProperty(this.companyName, this.taxonomy[constraint.dimension][index].value)
+            }
+            else {
+              this.taxonomy[constraint.dimension][index].selectable &#x3D; 1
+            }
+
+          }
+        }
+      })
+    }
+  }
+
+  checkExclusiveConstraint(dimension, value) {
+    if (value.exclusive) {
+      this.taxonomy[dimension].forEach(v &#x3D;&gt; {
+        if (v.value !&#x3D;&#x3D; value.value) {
+          if (value.selected) {
+            v.selectable &#x3D; 0;
+            if (v.selected) {
+              v.selected &#x3D; 0
+              this.db.deleteProperty(this.companyName, v.value)
+            }
+          }
+          else {
+            v.selectable &#x3D; 1;
+          }
+        }
+      });
+    }
+  }
+
+
+  onCheckboxChange(e, value: any, dimension) {
+    if (e.target.checked) {
+      this.propertyValuesFormArray.push(new UntypedFormControl(e.target.value));
+      this.db.createProperty(this.companyName, e.target.value)
+      // this.db.executeQuery(&#x60;INSERT INTO PropertyCompany (company, property) values (&#x27;${this.companyName}&#x27;,&#x27;${e.target.value}&#x27;);&#x60;)
+      value.selected &#x3D; 1
+    } else {
+      const index &#x3D; this.propertyValuesFormArray.controls.findIndex(x &#x3D;&gt; x.value &#x3D;&#x3D;&#x3D; e.target.value);
+      this.propertyValuesFormArray.removeAt(index);
+      value.selected &#x3D; 0
+      // this.db.executeQuery(&#x60;DELETE FROM PropertyCompany WHERE company &#x3D; &#x27;${this.companyName}&#x27; AND property &#x3D; &#x27;${e.target.value}&#x27;;&#x60;)
+      this.db.deleteProperty(this.companyName, e.target.value)
+    }
+    this.checkDependencyConstraint(value)
+    this.checkExclusiveConstraint(dimension, value) 
+  }
+
+
+  // async onCompanyChange(companyName) {
+  //   this.taxonomy &#x3D; {}
+  //   // this.db.updateSelectedCompany(companyName)
+  //   await this.db.executeQuery(&#x27;update Company set selected &#x3D; false where selected &#x3D; true&#x27;)
+  //   if (companyName &#x3D;&#x3D; &quot;+ Add&quot;) {
+  //     var newCompany &#x3D; prompt(&quot;Please enter the name of the new platform company&quot;);
+  //     await this.db.executeQuery(&#x60;insert into Company (name, selected) values (&#x27;${newCompany}&#x27;, true)&#x60;)
+  //     this.db.getCompanies().then(data &#x3D;&gt;
+  //       (this.companies &#x3D; data))
+  //     this.companyName &#x3D; newCompany
+  //   }
+  //   else {
+  //     await this.db.executeQuery(&#x60;update Company set selected &#x3D; true where name &#x3D; &#x27;${companyName}&#x27;&#x60;)
+  //   }
+  //   this.fetchTaxonomy();
+
+  // }
+
+
+  // editTaxonomy() {
+  //   // this.db.deleteProperties(this.company)
+  //   //this.db.updateProperties(this.company, this.taxonomyForm.value[&#x27;dimensionValue&#x27;])
+  // }
+
+  async fetchCompany() {
+    this.companyName &#x3D; this.companyService.companyName
+    this.db.createCompany({company: this.companyName})
+    // this.db.setCompany(this.companyName)
+    // this.db.executeQuery(&#x27;update Company set selected &#x3D; false where selected &#x3D; true&#x27;)
+    // this.db.executeQuery(&#x60;update Company set selected &#x3D; true where name &#x3D; &#x27;${this.companyService.companyName}&#x27;&#x60;)
+    this.fetchTaxonomy();
+  }
+
+  checkMandatoryValues() {
+    const missingDimensions &#x3D; [];
+    
+    for (let d in this.taxonomy) {
+      const values &#x3D; this.taxonomy[d]
+      if (values[&#x27;mandatory&#x27;]) {
+        var sum &#x3D; 0
+        values.forEach(v &#x3D;&gt; {
+          sum &#x3D; sum+v.selected
+        })
+        if (sum &#x3D;&#x3D; 0) {
+          missingDimensions.push(d)
+        }
+      }
+    }
+
+    if (missingDimensions.length &gt; 0) {
+      alert(&#x60;Please select a value for the following mandatory dimensions: ${missingDimensions.join(&quot;, &quot;)}&#x60;);
+    } else {
+      alert(&quot;Saved&quot;);
+    }
+  }
+}
+
+
+
+
+
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;text-center&quot;&gt;
+  &lt;H1&gt;Taxonomy&lt;/H1&gt;
+  Select Company:
+  &lt;div&gt;
+    &lt;!-- &lt;select [(ngModel)]&#x3D;&quot;companyName&quot; (ngModelChange)&#x3D;&quot;onCompanyChange($event)&quot;&gt;
+      &lt;option *ngFor&#x3D;&quot;let company of companies&quot; [ngValue]&#x3D;&quot;company.name&quot;&gt;{{company.name}}
+      &lt;/option&gt;
+      &lt;option class&#x3D;&quot;add-option&quot;&gt;+ Add&lt;/option&gt;
+    &lt;/select&gt; --&gt;
+    &lt;p&gt;{{this.companyName}}&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;sup&gt;m&lt;/sup&gt; &#x3D; mandatory, &lt;sup&gt;e&lt;/sup&gt; &#x3D; exclusive, &lt;sup&gt;o&lt;/sup&gt; &#x3D; optional, &lt;sup&gt;d&lt;/sup&gt; &#x3D; dependent
+  &lt;br&gt;
+  
+
+
+  &lt;div *ngFor&#x3D;&quot;let d of this.taxonomy | keyvalue | orderBy:&#x27;orderNr&#x27;&quot;&gt;
+    &lt;!-- Dimensions --&gt;
+    &lt;span class&#x3D;&quot;clickable&quot; [ngbPopover]&#x3D;&quot;popoverContent&quot; triggers&#x3D;&quot;click&quot; (click)&#x3D;&quot;showPopup &#x3D; true&quot;&gt;
+      
+      &lt;h4 class&#x3D;&quot;display-6&quot;&gt;{{d.key}} &lt;sup *ngIf&#x3D;&quot;d.value.mandatory&quot;&gt;m&lt;/sup&gt;&lt;sup *ngIf&#x3D;&quot;!d.value.mandatory&quot;&gt;o&lt;/sup&gt;&lt;/h4&gt;
+    &lt;/span&gt;
+
+    &lt;ng-template #popoverContent &gt;
+      &lt;div *ngIf&#x3D;&quot;showPopup&quot; class&#x3D;&quot;text-center&quot;&gt;
+        &lt;p&gt;{{ d.value.description }}&lt;/p&gt;
+        &lt;button class&#x3D;&quot;button&quot; (click)&#x3D;&quot;showPopup &#x3D; false&quot;&gt;Close&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/ng-template&gt;
+
+    &lt;!-- DimensionValues--&gt;
+
+    &lt;div class&#x3D;&quot;form-check form-check-inline&quot; *ngFor&#x3D;&quot;let dv of d.value&quot;&gt;
+      &lt;input type&#x3D;&quot;checkbox&quot; class&#x3D;&quot;form-check-input&quot; id&#x3D;{{dv.value}} autocomplete&#x3D;&quot;off&quot; [value]&#x3D;&quot;dv.value&quot;
+        [checked]&#x3D;dv.selected (click)&#x3D;&quot;onCheckboxChange($event, dv, d.key)&quot; [disabled]&#x3D;&quot;!dv.selectable&quot;&gt;
+      &lt;label class&#x3D;&quot;form-check-label&quot; for&#x3D;{{dv.value}}&gt; {{dv.value}}
+        &lt;sup *ngIf&#x3D;&quot;dv.exclusive&quot;&gt;e&lt;/sup&gt;
+        &lt;sup *ngIf&#x3D;&quot;dv.dependency &amp;&amp; dv.exclusive&quot;&gt;, &lt;/sup&gt;
+        &lt;sup *ngIf&#x3D;&quot;dv.dependency&quot;&gt;d&lt;/sup&gt;
+      &lt;/label&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;br&gt;
+  &lt;button class&#x3D;&quot;button&quot; (click)&#x3D;&quot;checkMandatoryValues()&quot;&gt;Save&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./taxonomy.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">.add-option {
+    background-color: #fff;
+    color: blue;
+    text-align: center;
+  }
+
+.central {
+    display: inline-block;
+    flex-wrap: nowrap;
+    flex-direction: row;
+}
+
+  .display-6 {
+    margin-top: 10px;
+  }
+
+  .button {
+    background-color: blue;
+    color: white;
+  }
+
+.icon-background2 {
+    color:  #0288D1;
+ }
+ 
+ .fa-info {
+  color:white;
+  font-size: 10px;
+ }
+ 
+ .fa-circle {
+    font-size: 20px;
+ }
+
+
+
+ .circle-container {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+}
+
+.circle {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #007bff;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+}
+
+.question-mark {
+  font-size: 1.5em;
+}
+
+
+.clickable {
+  cursor: pointer; /* Add a pointer cursor to indicate clickability */
+  transition: background-color 0.2s; /* Optional: Add a smooth transition effect */
+}
+
+.clickable:hover {
+  background-color: #f0f0f0; /* Optional: Change background color on hover to indicate interactivity */
+}</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="text-center">  <H1>Taxonomy</H1>  Select Company:  <div>    <!-- <select [(ngModel)]="companyName" (ngModelChange)="onCompanyChange($event)">      <option *ngFor="let company of companies" [ngValue]="company.name">{{company.name}}      </option>      <option class="add-option">+ Add</option>    </select> -->    <p>{{this.companyName}}</p>  </div>  <sup>m</sup> = mandatory, <sup>e</sup> = exclusive, <sup>o</sup> = optional, <sup>d</sup> = dependent  <br>    <div *ngFor="let d of this.taxonomy | keyvalue | orderBy:\'orderNr\'">    <!-- Dimensions -->    <span class="clickable" [ngbPopover]="popoverContent" triggers="click" (click)="showPopup = true">            <h4 class="display-6">{{d.key}} <sup *ngIf="d.value.mandatory">m</sup><sup *ngIf="!d.value.mandatory">o</sup></h4>    </span>    <ng-template #popoverContent >      <div *ngIf="showPopup" class="text-center">        <p>{{ d.value.description }}</p>        <button class="button" (click)="showPopup = false">Close</button>      </div>    </ng-template>    <!-- DimensionValues-->    <div class="form-check form-check-inline" *ngFor="let dv of d.value">      <input type="checkbox" class="form-check-input" id={{dv.value}} autocomplete="off" [value]="dv.value"        [checked]=dv.selected (click)="onCheckboxChange($event, dv, d.key)" [disabled]="!dv.selectable">      <label class="form-check-label" for={{dv.value}}> {{dv.value}}        <sup *ngIf="dv.exclusive">e</sup>        <sup *ngIf="dv.dependency && dv.exclusive">, </sup>        <sup *ngIf="dv.dependency">d</sup>      </label>    </div>  </div>  <br>  <button class="button" (click)="checkMandatoryValues()">Save</button></div></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CategoriesComponent', 'selector': 'app-categories'},{'name': 'ChangePasswordComponent', 'selector': 'app-change-password'},{'name': 'CreateEditListingComponent', 'selector': 'app-form'},{'name': 'ListingDetailComponent', 'selector': 'app-detail'},{'name': 'ListingsComponent', 'selector': 'app-listings'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MessagesComponent', 'selector': 'app-messages'},{'name': 'MylistingsComponent', 'selector': 'app-mylistings'},{'name': 'NotFoundComponent', 'selector': 'app-not-found'},{'name': 'ProfileComponent', 'selector': 'app-profile'},{'name': 'SignupComponent', 'selector': 'app-signup'},{'name': 'TaxonomyComponent', 'selector': 'app-taxonomy'},{'name': 'TransactiondetailComponent', 'selector': 'app-transactiondetail'},{'name': 'TransactionsComponent', 'selector': 'app-transactions'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'TaxonomyComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'TaxonomyComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

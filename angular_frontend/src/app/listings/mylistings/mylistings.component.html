@@ -1,0 +1,254 @@
+<div style="margin: 10px;">
+    <div class="row" *ngIf="filteredListings() as lst">
+  
+      <!-- Left column -->
+      <div *ngIf="!isMobile" class="col-3">
+        <div class="card">
+          <div class="card-body">
+            <h2>Filter by</h2>
+            <!-- Calendar -->
+            <div *ngIf="ps.properties['Listing Kind']?.includes('Service')">
+              <mat-card style="width: 100%;padding-top: 0px">
+                <mat-calendar [selected]="selected" (selectedChange)="selected = $event">
+                </mat-calendar>
+              </mat-card>
+              <!-- Clear selection button -->
+              <button *ngIf="selected" type="button" class="btn btn-outline-danger btn-block" (click)="selected = null">
+                Clear Date Selection
+              </button>
+            </div>
+            <!-- Category selection -->
+            <div *ngFor="let category of categories">
+              <!-- Category name -->
+              <h4 class="display-6" style="margin-top: 10px;">
+                {{category[0]}}
+              </h4>
+              <!-- Subcategory list -->
+              <div class="btn-group-toggle btn-group-vertical" data-toggle="buttons" style="width: 100%;">
+                <label *ngFor="let c of category[1]" class="btn btn-outline-dark btn-block" [for]="c.name">
+                  <!-- Button (actually checkbox) -->
+                  <input type="checkbox" class="btn-check" [id]="c.name" autocomplete="off" [(ngModel)]="c.selected">
+                  {{c.name + (c.selected ? ' ✔' : '')}}
+                </label>
+              </div>
+            </div>
+  
+          </div>
+        </div>
+      </div>
+  
+      <!-- Right Col (All main info)-->
+      <div class="col">
+        <div class="container">
+  
+          <!-- Row containing search bar and order preference -->
+          <div class="row">
+  
+            <!-- Search bar -->
+            <div class="col">
+              <div class="input-group mb-3">
+  
+                <!-- label -->
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">
+                    🔎
+                  </span>
+                </div>
+  
+                <input type="text" placeholder="Search" class="form-control" [(ngModel)]="searchTerm">
+  
+              </div>
+            </div>
+  
+            <!-- Order preference -->
+            <div class="col-auto">
+              <div class="input-group mb-3">
+  
+                <!-- label -->
+                <div class="input-group-prepend">
+                  <label class="input-group-text" for="orderBySelect">
+                    Order By
+                  </label>
+                </div>
+  
+                <!-- selector -->
+                <select class="custom-select" id="orderBySelect" [(ngModel)]="sortCol">
+                  <option *ngFor="let c of sortCols; let i = index" [value]="i">
+                    {{c.name}}
+                  </option>
+                </select>
+  
+              </div>
+            </div>
+  
+          </div>
+  
+          <!-- Row containing amount of results and page nagivation -->
+          <div class="row">
+  
+            <!-- Amount of results -->
+            <div class="col">
+              <p style="margin: 0px;"><i>{{lst.length}} result{{(lst.length > 1 ? "s" : "")}} </i></p>
+            </div>
+  
+            <!-- Template for page navigation -->
+            <ng-template #pages>
+              <div class="col-auto" *ngIf="lst.length > 10">
+                <div class="row">
+  
+                  <!-- Items per page selector -->
+                  <div class="col-auto">
+                    <div class="form-group">
+  
+                      <label for="itemsPerPage" style="margin-right: 3px;">
+                        Items Per Page:
+                      </label>
+  
+                      <!-- Radio -->
+                      <div class="btn-group mr-2" role="group" aria-label="First group" id="itemsPerPage">
+                        <button *ngFor="let o of pageLimitOption; let i = index"
+                          [class]="'btn btn' + (pageLimitIndex === i ? '': '-outline') + '-secondary'"
+                          (click)="pageLimitIndex = i; currentPage = 1">
+                          {{o}}
+                        </button>
+                      </div>
+  
+                    </div>
+                  </div>
+  
+                  <!-- Page selector -->
+                  <div class="col-auto">
+                    <div class="input-group mb-3" id="currPage">
+  
+                      <!-- Decrement page nr button -->
+                      <div class="input-group-prepend">
+                        <button class="btn btn-outline-secondary"
+                          (click)="currentPage = currentPage !== 1 ? currentPage - 1 : currentPage">
+                          &#60;
+                        </button>
+                      </div>
+  
+                      <!-- Page nr input -->
+                      <input type="number" min=1 [max]="maxPage(lst)" class="form-control" [(ngModel)]="currentPage">
+  
+                      <!-- Increment page nr button -->
+                      <div class="input-group-append">
+                        <button class="btn btn-outline-secondary"
+                          (click)="currentPage = currentPage !== maxPage(lst) ? currentPage + 1 : currentPage">
+                          &#62;
+                        </button>
+                      </div>
+  
+                    </div>
+                  </div>
+  
+                </div>
+              </div>
+            </ng-template>
+  
+            <!-- Page navigation -->
+            <ng-container *ngTemplateOutlet="pages"></ng-container>
+  
+          </div>
+  
+          <!-- Row containing listings -->
+          <div class="row">
+            <div class="col" *ngIf="pageLimitOption[pageLimitIndex] as pageLimit">
+  
+              <!-- Listings -->
+              <div class="card"
+                *ngFor="let l of lst.slice(pageLimit * (currentPage - 1), pageLimit * (currentPage - 1) + pageLimit)"
+                style="margin-bottom: 5px;">
+  
+                <!-- Listing -->
+                <div class="row no-gutters">
+  
+                  <!-- Image -->
+                  <div *ngIf="!ps.properties['Listing Type']?.includes('Digital Good')" class="col-auto" style="cursor:pointer;" [routerLink]="['/listings', 'details', l.listingID]">
+                    <img class="card-img-left" [src]="l.picture ? l.picture : image.getPlaceholderImage()"
+                      style="width: 318px;height: 200;" [alt]="l.name">
+                  </div>
+  
+                  <!-- Listing info -->
+                  <div class="col">
+                    <div class="card-body">
+                      <div class="row no-gutters">
+  
+                        <!-- Details -->
+                        <div class="col" style="cursor:pointer;" [routerLink]="['/listings', 'details', l.listingID]">
+  
+                          <!-- Title -->
+                          <h5 class="card-title">
+                            {{ l.name }}
+                            <b *ngIf="l.status === 'pending'" style="color: orange;"> (WAITING FOR APPROVAL) </b>
+                            <b *ngIf="l.status === 'active' && l.availableAssets > 0" style="color: green;"> (ACTIVE) </b>
+                            <b *ngIf="l.status === 'cancelled'" style="color: darkred;"> (CANCELLED) </b>
+                            <b *ngIf="l.status === 'rejected'" style="color: red;"> (REJECTED) </b>
+                            <b *ngIf="l.availableAssets === 0" style="color: gray;"> (SOLD OUT) </b>
+                          </h5>
+  
+                          <!-- Listing Details -->
+                          <div>
+                            <div> Categories: <b>{{l.categories}}</b></div>
+  
+                            <!-- Show average Rating -->
+                            <div *ngIf="l.avgScore && l.reviewAmount && ps.properties['Review By']?.includes('By Customer')">Rating:
+                              <ngb-rating max=5 [(rate)]="l.avgScore" readonly="true">
+                                <ng-template let-fill="fill" let-index="index">
+                                  <span [class]="'rating-star-back' + (fill === 100 ? '-filled' : '')">
+                                    <span class="rating-star-front" [style]="'width:' + fill + '%'">
+                                      &#9733;
+                                    </span>
+                                    &#9733;
+                                  </span>
+                                </ng-template>
+                              </ngb-rating>
+                              ({{l.reviewAmount}})
+                            </div>
+                            
+                            
+                            <div *ngIf="l.availableAssets && ps.properties['Quantity']?.includes('Many')">Quantity Available: <b>{{l.availableAssets}}</b></div>
+                            <div *ngIf="l.date">Date: <b>{{l.date}}</b></div>
+                            <div *ngIf="l.location">Location: <b>{{l.location}}</b></div>
+                            <!-- Verifier and Organization -->
+                            <div *ngIf="ps.properties['Listing Verification Mechanism']?.includes('External Verification')">
+                              <div *ngIf="l.verifierFirstName || l.verifierLastName">
+                                Verified By: <b>{{l.verifierFirstName}} {{l.verifierLastName}}</b>
+                              </div>
+                              <div *ngIf="l.verifierOrganizationName">
+                                Organization: <b>{{l.verifierOrganizationName}}</b>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+  
+                        <!-- Price -->
+                        <div class="col-auto">
+                          <h2><i>€ {{l.price}}</i></h2>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+  
+              <!-- No results -->
+              <div *ngIf="lst!== undefined && lst.length === 0">
+                <b>No Listings Found</b>
+              </div>
+  
+            </div>
+          </div>
+  
+          <!-- Row containing Page navigation -->
+          <div class="row" *ngIf="lst.length > 0">
+            <!-- Trick to allow right alligning -->
+            <div class="col"></div>
+            <!-- Page navigation -->
+            <ng-container *ngTemplateOutlet="pages"></ng-container>
+          </div>
+  
+        </div>
+      </div>
+  
+    </div>
+  </div>

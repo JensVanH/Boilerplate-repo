@@ -1,0 +1,20 @@
+.custom-dropdown {
+  position: relative;
+
+  select.form-control {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    padding-right: 30px;
+  }
+
+  .dropdown-arrow {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    pointer-events: none;
+    transform: translateY(-50%);
+    font-size: 14px;
+    color: #888;
+  }
+}

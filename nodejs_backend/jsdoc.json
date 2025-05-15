@@ -1,0 +1,10 @@
+{
+    "source": {
+        "include": [
+            "/Users/tdrave/marketplace_start_code/nodejs_backend"
+        ]
+    },
+    "opts": {
+        "destination": "/Users/tdrave/marketplace_start_code/nodejs_backend/documentation"
+    }
+}

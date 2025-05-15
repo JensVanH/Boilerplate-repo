@@ -1,0 +1,259 @@
+<div *ngIf="ps.properties"> 
+  <div style="margin: 10px;">
+    <div class="container">
+      <div class="row">
+        <div class="offset-md-2 col-md-8 offset-lg-3 col-lg-6">
+
+          <!-- Title -->
+          <h1>Sign Up</h1>
+
+          <!-- Role Toggle (Only visible if External Verification is enabled) -->
+          <div *ngIf="isExternalVerification" style="margin-bottom: 20px;">
+            <label style="margin-bottom: 5px;">Sign Up As:</label>
+            <div style="display: flex; gap: 15px;">
+              <label class="form-check-label">
+                <input 
+                  type="radio" 
+                  name="roleToggle" 
+                  (click)="toggleRole('user')" 
+                  [checked]="!isVerifier">
+                User
+              </label>
+
+              <label class="form-check-label">
+                <input 
+                  type="radio" 
+                  name="roleToggle" 
+                  (click)="toggleRole('verifier')" 
+                  [checked]="isVerifier">
+                Verifier
+              </label>
+            </div>
+          </div>
+
+          <!-- Form -->
+          <div class="card">
+            <div class="card-body" style="margin-top: 15px;">
+              <form [formGroup]="form" (ngSubmit)="signUp()" *ngIf="form.getRawValue() as f">
+
+                <!-- First Name -->
+                <div *ngIf="ps.properties['User Type']?.includes('Person')" class="form-group">
+                  <label for="inputFirstName">First Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="inputFirstName"
+                    placeholder="Enter First Name"
+                    formControlName="firstName">
+                </div>
+
+                <!-- Last Name -->
+                <div *ngIf="ps.properties['User Type']?.includes('Person')" class="form-group">
+                  <label for="inputLastName">Last Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="inputLastName"
+                    placeholder="Enter Last Name"
+                    formControlName="lastName">
+                </div>
+
+                <!-- Organization -->
+                <div *ngIf="ps.properties['User Type']?.includes('Organisation')" class="form-group">
+                  <label for="inputOrganisation">Organisation</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="inputOrganisation"
+                    placeholder="Enter Organisation"
+                    formControlName="organisation">
+                </div>
+
+                <!-- Organization Dropdown (only for Verifier) -->
+                <div *ngIf="isVerifier" class="form-group" style="margin-top: 15px;">
+                  <label for="organizationDropdown">Select Organization</label>
+                  <select class="form-control" formControlName="organizationID">
+                    <option value="" disabled selected>Select your option</option>
+                    <option *ngFor="let org of organizations" [value]="org.organizationID">
+                      {{ org.name }}
+                    </option>
+                  </select>
+                </div>
+
+                <!-- Email Address -->
+                <div class="form-group">
+                  <label for="inputEmail">Email Address <i style="color: red;">*</i></label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="inputEmail"
+                    placeholder="Enter email"
+                    formControlName="email">
+                </div>
+
+                <!-- Username -->
+                <div class="form-group">
+                  <label for="inputUsername">Username <i style="color: red;">*</i></label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="inputUsername"
+                    placeholder="Enter username"
+                    formControlName="userName">
+                </div>
+
+                <!-- Gender -->
+                <div *ngIf="ps.properties['User Type']?.includes('Person')" class="form-group">
+                  <label for="inputGender">Gender</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="inputGender"
+                    placeholder="Enter Gender"
+                    formControlName="gender">
+                </div>
+
+                <!-- Address -->
+                <div class="form-group">
+                  <label for="inputAddress">Address</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="inputAddress"
+                    placeholder="Enter Address"
+                    formControlName="address">
+                </div>
+
+                <!-- Birth Date -->
+                <div *ngIf="ps.properties['User Type']?.includes('Person')" class="form-group">
+                  <label for="inputBirthDate">Birth Date</label>
+                  <input
+                    type="date"
+                    class="form-control"
+                    id="inputBirthDate"
+                    placeholder="Enter Birth Date"
+                    formControlName="birthDate">
+                </div>
+
+                <!-- Phone number -->
+                <div class="form-group">
+                  <label for="inputPhoneNumber">Phone number</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="inputPhoneNumber"
+                    placeholder="Enter Phone Number"
+                    formControlName="phoneNumber">
+                </div>
+                
+                <!-- Profile picture -->
+                <div class="form-group">
+
+                  <!-- Image Input -->
+                  <label for="inputImage">
+                    Profile picture
+                  </label>
+                  <div class="custom-file" id="inputImage">
+                    <input
+                      type="file"
+                      class="custom-file-input"
+                      id="customFile"
+                      (change)="fileSelected($event)">
+                    <label class="custom-file-label" for="customFile">
+                      {{fileName ? fileName : 'Choose Image'}}
+                    </label>
+                  </div>
+
+                  <!-- Display selected Image -->
+                  <div *ngIf="imgSrc" style="display: flex;justify-content: center;">
+                    <img style="width: 200px;height: 200px;border-radius: 50%;" [src]="imgSrc">
+                  </div>
+
+                  <!-- Remove Image Button -->
+                  <button
+                    *ngIf="imgSrc"
+                    type="button"
+                    class="btn btn-outline-danger btn-block"
+                    (click)="imgSrc = null">
+                      Remove picture
+                  </button>
+
+                  <!-- Image Error -->
+                  <small *ngIf="imgError" class="form-text">
+                    <i style="color: red;">{{imgError}}</i>
+                  </small>
+                </div>
+
+                <!-- Password -->
+                <div class="form-group">
+                  <label for="inputPassword">
+                    Password <i style="color: red;">*</i>
+                  </label>
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="inputPassword"
+                    placeholder="Password"
+                    formControlName="password">
+
+                  <!-- Password strength -->
+                  <small *ngIf="f.password" class="form-text">
+                    <i
+                      *ngIf="user.passwordStrength(f.password) as strength"
+                      [style]="'color: ' + ['red', 'red', 'orange', 'green'][strength - 1]">
+                        {{'•'.repeat(strength) + " " + ['Very weak', 'Weak', 'Medium', 'Strong'][strength -1]}}
+                    </i>
+                  </small>
+
+                </div>
+
+                <!-- Password Confirmation -->
+                <div class="form-group" style="margin-bottom: 15px;">
+                  <label for="inputRepeatPassword">Repeat Password <i style="color: red;">*</i></label>
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="inputRepeatPassword"
+                    placeholder="Repeat Password"
+                    formControlName="repeatPassword">
+                
+
+                <!-- Repeated password errors -->
+                  <small *ngIf="f.password && f.repeatPassword && f.password !== f.repeatPassword" class="form-text">
+                    <i style="color: red;">Passwords don't match</i>
+                  </small>
+                </div>
+
+                <!-- Sign Up Button -->
+                <button
+                  type="submit"
+                  class="btn btn-primary btn-block"
+                  style="margin-top: 10px;"
+                  [disabled]="!(f.userName && f.email && f.password && f.repeatPassword && f.password === f.repeatPassword)">
+                    SIGN UP
+                </button>
+
+                <!-- Sign up errors-->
+                <small *ngIf="error" class="form-text">
+                  <i style="color: red;">{{error}}</i>
+                </small>
+
+                <!-- Link to login page -->
+                <a routerLink="/login">
+                  Already have an account? Log In
+                </a>
+
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Loading indicator -->
+<div *ngIf="!ps.properties" style="text-align: center; margin-top: 50px;">
+  <p>Loading properties...</p>
+</div>
+

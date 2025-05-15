@@ -1,0 +1,475 @@
+<!-- Only display listing when data is fetched and no error has occurred -->
+<div *ngIf="listing && !error" class="d-flex justify-content-center" style="margin: 10px;">
+  <div class="container">
+
+    <!-- Row containing listing name + action buttons -->
+    <div class="row">
+
+      <!-- Listing name -->
+      <div class="col">
+        <h1>
+          {{ listing.name }}
+          <b *ngIf="listing.status ==='cancelled'" style="color: red;"> (CANCELLED)</b>
+          <b *ngIf="listing.availableAssets === 0" style="color: red;"> (SOLD OUT)</b>
+        </h1>
+      </div>
+
+      <!-- Action buttons -->
+      <div class="col text-end" *ngIf="user.getId() === listing.userID && listing.status !== 'cancelled'">
+        <div class="btn-group" role="group">
+
+          <!-- Edit Listing -->
+          <button class="btn btn-lg btn-success" routerLink="/listings/createEditListing"
+            [queryParams]="{edit: listing.listingID}">
+            EDIT
+          </button>
+
+          <!-- Cancel Listing -->
+          <button class="btn btn-lg btn-danger" (click)="cancelListing(listing.listingID)">
+            CANCEL
+          </button>
+
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Row containing Image + Window to make transaction -->
+    <div class="row">
+
+      <!-- Image -->
+      <div *ngIf="!ps.properties['Listing Type']?.includes('Digital Good')" class="col-8">
+        <img style="width: 100%;border-radius: 5px;"
+          [src]="listing.picture ? listing.picture : image.getPlaceholderImage()">
+      </div>
+
+      <!-- Window to make transaction -->
+      <div class="col">
+
+        <!-- Asking price -->
+        <h2>Asking Price:<b> €{{listing.price}}</b></h2>
+
+        <!-- Availability calendar -->
+        <div class="card" *ngIf="ps.properties['Listing Kind']?.includes('Service') && ps.properties['Frequency'].includes('Recurring')">
+          <div class="card-body">
+            <mat-card style="width: 100%;padding-top: 0px">
+              <mat-calendar #bookings [dateClass]="dateClass" (selectedChange)="_onSelectedChange($event)" 
+              [selected]="ps.properties['Time Unit']?.includes('Day') ? selectedDateRange : selectedDate">
+              </mat-calendar>
+            </mat-card>
+
+            <!-- Shows already occupied hours -->
+            <div *ngIf="ps.properties['Time Unit']?.includes('Hour')">
+              Scheduled bookings:
+              <p *ngFor="let b of logBookings()" style="margin: 0">
+                {{ b }}
+              </p>
+            </div>
+          </div>
+        </div>
+        
+
+        <!-- Make Transaction (only when user is logged in, isn't the owner of the listing, isn't a verifier and the listing is still available)-->
+        <div class="card"
+          *ngIf="user.isLoggedIn() && listing.userID !== user.getId() && listing.availableAssets !== 0 && listing.status !== 'cancelled' && !user.isVerifier()">
+          <div class="card-body">
+            <form [formGroup]="form" (ngSubmit)="createTransaction()">
+              <!--Address input-->
+              <div class="form-group" *ngIf="ps.properties['Listing Type']?.includes('Physical Good')">
+                <label for="address">
+                  Address
+                </label>
+                <input type="text" class="form-control" id="address" placeholder="address" formControlName="address">
+              </div>
+              <!-- Number of Assets Input -->
+              <div class="form-group" *ngIf="!ps.properties['Quantity']?.includes('One') && !ps.properties['Frequency']?.includes('Recurring')">
+                <label for="inputNumberOfAssets">
+                  Quantity (max {{listing.availableAssets}})
+                </label>
+                <input type="number" min=1 max={{listing.availableAssets}} class="form-control" id="inputNumberOfAssets"
+                  placeholder="Quantity" formControlName="numberOfAssets">
+              </div>
+              <!-- Time input -->
+              <div *ngIf="ps.properties['Listing Kind']?.includes('Service') && ps.properties['Frequency']?.includes('Recurring') && ps.properties['Time Unit'].includes('Hour')" class="form-group">
+                <label for="inputStartTime">Start Time</label>
+                <input type="time" class="form-control" id="inputStartTime" formControlName="startTime">
+              </div>
+              <div *ngIf="ps.properties['Listing Kind']?.includes('Service') && ps.properties['Frequency']?.includes('Recurring') && ps.properties['Time Unit'].includes('Hour')" class="form-group">
+                <label for="inputAmountOfHours">Amount of hours</label>
+                <input type="number" min=1 class="form-control" id="inputAmountOfHours"
+                  formControlName="amountOfHours">
+              </div>
+              <div *ngIf="ps.properties['Listing Kind']?.includes('Service') && ps.properties['Frequency']?.includes('Recurring')">
+                Total Price: €{{ getTotalPrice() }}
+              </div>
+              <!-- Make transaction -->
+              <div>
+                <button type="submit" class="btn btn-primary btn-block">
+                  Make Transaction
+                </button>
+              </div>
+              
+
+            </form>
+          </div>
+        </div>
+
+        <div class="card" *ngIf="!user.isLoggedIn()">
+          <div class="text-center" style="padding:10px">
+            <button type="button" class="btn btn-primary btn-block" routerLink="/login">
+              Make Transaction
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Radio buttons for listing detail tabs -->
+    <div class="btn-group" role="group" style="margin-left: 15px;margin-top: 20px;">
+
+      <!-- Info -->
+      <button [class]="'btn detail-tab-radio-button--info' + (selectedTab === 'info' ? '-selected' : '')"
+        (click)="selectedTab = 'info'">
+        Info
+      </button>
+
+      <!-- Reviews -->
+      <button *ngIf="ps.properties['Review By']?.includes('By Customer')" [class]="'btn detail-tab-radio-button--success' + (selectedTab === 'reviews' ? '-selected' : '')"
+        (click)="selectedTab = 'reviews'">
+
+        <!-- star rating system -->
+        Reviews:
+        <ngb-rating max=5 [(rate)]="avgScore" readonly="true" *ngIf="avgScore !== 0">
+          <ng-template let-fill="fill" let-index="index">
+            <span [class]="'rating-star-back' + (fill === 100 ? '-filled' : '')">
+              <span class="rating-star-front" [style]="'width:' + fill + '%'">
+                &#9733;
+              </span>
+              &#9733;
+            </span>
+          </ng-template>
+        </ngb-rating>
+
+        ({{reviews.length}})
+      </button>
+
+      <!-- Transactions (only when user is owner of listing) -->
+      <button *ngIf="listing.userID === user.getId()"
+        [class]="'btn detail-tab-radio-button--warning' + (selectedTab === 'transactions' ? '-selected' : '')"
+        (click)="selectedTab = 'transactions'">
+        Transactions
+      </button>
+
+      <!-- Contact (only when user is not owner of listing) -->
+      <button *ngIf="listing.userID !== user.getId() && user.isLoggedIn() && ps.properties['Conversation System']?.includes('Listings Conversation')"
+        class="btn detail-tab-radio-button--danger"
+        (click)="contactOwner()">
+        Message Seller
+      </button>
+
+    </div>
+
+    <!-- Detail window -->
+    <div [class]="'detail-window--' + selectedTab" id="details">
+
+      <!-- Info Tab -->
+      <div *ngIf="selectedTab === 'info'" id='info'>
+
+        <!-- Description -->
+        <b *ngIf="listing.description">Description:</b>
+        <p *ngIf="listing.description">
+          {{listing.description}}
+        </p>
+
+        <!-- Available Assets -->
+        <p *ngIf="!ps.properties['Quantity'].includes('One') && (listing.availableAssets || listing.availableAssets === 0)">
+          <b>Quantity Available: </b>{{listing.availableAssets}}
+        </p>
+
+        <!-- Date -->
+        <p *ngIf="listing.date">
+          <b>Date: </b>{{listing.date}}
+        </p>
+
+        <!-- Location -->
+        <div *ngIf="listing.location">
+          <b>Location: </b>{{listing.location}}
+
+          <div class="map" id="map" style="height:500px"></div>
+
+        </div>
+        
+
+        <!-- Seller -->
+        <p>
+          <b>Seller: </b>{{listing.userName}}
+          <span *ngIf="ps.properties['Review Of']?.includes('Of Provider') && sellerReviewAmount !== 0">
+            <ngb-rating max=5 [(rate)]="sellerScore" readonly="true">
+              <ng-template let-fill="fill" let-index="index">
+                <span [class]="'rating-star-back' + (fill === 100 ? '-filled' : '')">
+                  <span class="rating-star-front" [style]="'width:' + fill + '%'">
+                    &#9733;
+                  </span>
+                  &#9733;
+                </span>
+              </ng-template>
+            </ngb-rating>
+            ({{ sellerReviewAmount }})
+          </span>
+        </p>
+
+        <!-- Verifier (if external verification is enabled) -->
+        <p *ngIf="listing.verifierFirstName && listing.verifierLastName">
+          <b>Verifier: </b>{{ listing.verifierFirstName }} {{ listing.verifierLastName }}
+        </p>
+
+        <!-- Verifier's Organization (if available) -->
+        <p *ngIf="listing.verifierOrganizationName">
+          <b>Verifier's Organization: </b>{{ listing.verifierOrganizationName }}
+        </p>
+
+        <!-- Categories -->
+        <p *ngFor="let c of listing.categories">
+          <b>{{c[0]}}:</b> {{c[1].join(", ")}}
+        </p>
+
+      </div>
+
+      <!-- Reviews Tab -->
+      <div *ngIf="selectedTab === 'reviews'" id='reviews'>
+
+        <!-- Reviews -->
+        <div *ngIf="reviews.length > 0">
+
+          <!-- Each Review -->
+          <div *ngFor="let review of reviews">
+
+            <!-- User Image-->
+            <img style="border-radius: 50%; height: 30px; width: 30px"
+              [src]="review.Transaction.User.profilePicture ? review.Transaction.User.profilePicture: image.getUserPlaceholderImage()">
+
+            <!-- User Name -->
+            {{review.Transaction.User.userName}}
+
+            <!-- Rating -->
+            <ngb-rating max=5 [(rate)]="review.score" readonly="true">
+              <ng-template let-fill="fill" let-index="index">
+                <span [class]="'rating-star-back' + (fill === 100 ? '-filled' : '')">
+                  &#9733;
+                </span>
+              </ng-template>
+            </ngb-rating>
+
+            <!-- Review Comment -->
+            <p *ngIf="review.comment" style="margin-left: 10px;">
+              {{review.comment}}
+            </p>
+
+            <hr>
+
+          </div>
+
+        </div>
+
+        <!-- No Reviews -->
+        <div *ngIf="reviews.length === 0">
+          No one has reviewed this listing yet
+        </div>
+
+      </div>
+
+      <!-- Transactions Tab-->
+      <div *ngIf="selectedTab === 'transactions'" id='transactions'>
+        
+        <div *ngIf="transactions.length > 0">
+          <!-- Transaction Card -->
+          <div [class]="'card bg-' + t.status" *ngFor="let t of transactions" style="margin-bottom: 5px;">
+            
+            <!-- Customer (with user score ) + Status -->
+            <h5 class="card-title" style="margin-left: 5px">
+              <div class="row">
+                <div class="col">
+                  <!-- Customer -->
+                  {{t.User.userName}}
+
+                  <!-- When user has score -->
+                  <ng-container *ngIf="ps.properties['Review By']?.includes('By Provider') && t.userRatingCount !== 0">
+                    <ngb-rating max=5 [(rate)]="t.userRating" readonly="true">
+                      <ng-template let-fill="fill" let-index="index">
+                        <span [class]="'rating-star-back' + (fill === 100 ? '-filled' : '')">
+                          <span class="rating-star-front" [style]="'width:' + fill + '%'">
+                            &#9733;
+                          </span>
+                          &#9733;
+                        </span>
+                      </ng-template>
+                    </ngb-rating>
+                    ({{t.userRatingCount}})
+                  </ng-container>
+                </div>
+
+                <!-- Status -->
+                <div [class]="'col text-end text-' + t.status" style="margin-right: 5px;">
+                  {{t.status.toUpperCase()}}
+                </div>
+              </div>
+            </h5>
+
+            <!-- Transaction Info -->
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <!-- Price -->
+                  <div>
+                    Price: <b>€{{t.price}}</b>
+                  </div>
+                  <!-- Created at -->
+                  <div>
+                    Created At: <b>{{t.createdAt.split('T').join(' ').split(':').slice(0, -1).join(':')}}</b>
+                  </div>
+                  <!-- Quantity -->
+                  <div *ngIf="ps.properties['Quantity']?.includes('Many')">
+                    Quantity: <b>{{ t.numberOfAssets }}</b>
+                  </div>
+                  <!-- Address -->
+                  <div *ngIf="ps.properties['Listing Type']?.includes('Physical Good')">
+                    Address: <b>{{ t.sendAddress }}</b>
+                  </div>
+                </div>
+
+                <!-- Actions on transaction -->
+                <div class="col text-end">
+                  <div class="btn-group" role="group" *ngIf="t.status !== 'cancelled'">
+  
+                    <!-- Confirm Payment-->
+                    <button *ngIf="t.status !== 'payed'" class="btn btn-success"
+                      (click)="confirmPayment(t.transactionID)">
+                      Confirm Payment
+                    </button>
+
+                    <!-- Review User -->
+                    <button *ngIf="ps.properties['Review By']?.includes('By Provider') && t.status === 'payed' && t.reviewable" class="btn btn-success"
+                      (click)="selectedTransactionForReview = t.transactionID">
+                      Review User
+                    </button>
+
+                    <!-- Cancel Transaction-->
+                    <button class="btn btn-danger" (click)="cancelTransaction(t.transactionID)">
+                      Cancel Transaction
+                    </button>
+
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Bookings on transaction-->
+              <div *ngIf="ps.properties['Listing Kind']?.includes('Service') && ps.properties['Frequency']?.includes('Recurring')">
+                Bookings:
+                <table class="table" *ngIf="t.bookings && t.bookings.length > 0">
+                  <thead class="thead-light">
+                    <!-- Table headers -->
+                    <tr>
+                      <th scope="col">Date</th>
+                      <th score="col" *ngIf="ps.properties['Time Unit']?.includes('Hour')">Time</th>
+                      <th score="col">Info</th>
+                      <th score="col">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let b of t.bookings">
+                      <!-- Date -->
+                      <td>
+                        {{ b.startDate === b.endDate ? b.startDate : b.startDate + " - " + b.endDate }}
+                      </td>
+                      <!-- Time -->
+                      <td *ngIf="ps.properties['Time Unit']?.includes('Hour')">
+                        {{ b.startTime }} - {{ b.endTime }}
+                      </td>
+                      <!-- Info -->
+                      <td>
+                        <textarea class="form-control" [(ngModel)]="b.info" placeholder="Enter Info" rows="3"></textarea>
+                      </td>
+                      <!-- Add Info Button -->
+                      <td>
+                        <button class="btn btn-info"
+                          (click)="saveBookingInfo(b)">
+                          Update info
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <!-- No bookings -->
+                <div *ngIf="!t.bookings || t.bookings.length === 0">
+                  <b>No Bookings On this transaction</b>
+                </div>
+              </div>
+
+              <!-- Review User Form -->
+              <div *ngIf="selectedTransactionForReview === t.transactionID">
+                <form [formGroup]="reviewForm" (ngSubmit)="postReview()">
+  
+                  <!-- Title + Rating -->
+                  <h4>
+                    Review {{ t.User.userName }}:
+                    <!-- Rating -->
+                    <ngb-rating max=5 [(rate)]="rating" (hover)="hoverRating = $event" (leave)="hoverRating = 0">
+                      <ng-template let-fill="fill" let-index="index">
+                        <span
+                          [style]="'font-size: 50px;color: ' + (index < hoverRating && index >= rating ? '#FAB81E': index < hoverRating ? 'orange' : index >= rating ? 'gray' : '#FFC300')">
+                          &#9733;
+                        </span>
+                      </ng-template>
+                    </ngb-rating>
+                  </h4>
+  
+                  <!-- Comment -->
+                  <div class="form-group">
+                    <label for="textareaComment">
+                      Comment (optional)
+                    </label>
+                    <textarea class="form-control" id="textareaComment" placeholder="Enter comment" rows="3"
+                      formControlName="comment">
+                  </textarea>
+                  </div>
+  
+                  <!-- Actions -->
+                  <div class="btn-group" role="group">
+  
+                    <!-- Cancel reviewing -->
+                    <button type="button" class="btn btn-danger" (click)="resetReviewForm()">
+                      Cancel Review
+                    </button>
+  
+                    <!-- Post review -->
+                    <button class="btn btn-success" [disabled]="rating === 0">
+                      Post Review
+                    </button>
+                  </div>
+                </form>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        
+        <!-- No Transactions -->
+        <div *ngIf="transactions.length === 0">
+          No one has make a transaction yet
+        </div> 
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<!-- Errors -->
+<div *ngIf="error" style="margin: 10px;">
+  <h1>ERROR</h1>
+  <p>{{error}}</p>
+  <button class="btn btn-danger" (click)="error=''">OK</button>
+</div>
