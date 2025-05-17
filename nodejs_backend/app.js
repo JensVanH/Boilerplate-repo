@@ -112,7 +112,7 @@ async function seedData() {
 
     // New Values for Listing Verifier Type
     { name: 'Individual Expert', orderNr: 1, dimension: 'Listing Verifier Type', exclusive: true },
-    { name: 'Organization', orderNr: 2, dimension: 'Listing Verifier Type', exclusive: true },
+    { name: 'Organizational Verifier', orderNr: 2, dimension: 'Listing Verifier Type', exclusive: true },
     { name: 'Community-based', orderNr: 3, dimension: 'Listing Verifier Type', exclusive: true }
   ];
 
@@ -137,7 +137,7 @@ async function seedData() {
     { value: 'One-Time', constraintsvalue: 'Of Listing' },
     // New constraints for Listing Verification Mechanism and Listing Verifier Type
     { value: 'Internal Verification', constraintsvalue: 'Individual Expert' },
-    { value: 'Internal Verification', constraintsvalue: 'Organization' },
+    { value: 'Internal Verification', constraintsvalue: 'Organizational Verifier' },
     { value: 'Internal Verification', constraintsvalue: 'Community-based' },
 ];
 
