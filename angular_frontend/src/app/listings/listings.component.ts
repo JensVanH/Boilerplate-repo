@@ -132,7 +132,7 @@ export class ListingsComponent implements OnInit {
     
     
     this.db.getActiveListings().then(l => {
-      console.log("Listings fetched:", l); // 👈 Add this
+      console.log("Listings fetched:", l);
       this.listings = l['listings']
       this.hasCancelled = false;
       this.loading = false;
