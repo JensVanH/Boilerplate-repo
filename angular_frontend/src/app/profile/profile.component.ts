@@ -90,7 +90,7 @@ export class ProfileComponent implements OnInit {
           id: this.user.getId(),
           userName: v.userName,
           accessToken: this.user.getLoginToken(),
-          role: this.user.user?.role || 'user' // 👈 Add this line
+          role: this.user.user?.role || 'user'
         })
         this.route.navigateByUrl("/")
       })
